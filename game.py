@@ -56,3 +56,13 @@ def title_screen():
     print(' -Created by Underwhelmed Ape-  ')
 
 title_screen_selections()
+
+def help_menu:
+    print('################################')
+    print('# Ministry of Magic Mayham RPG #')
+    print('################################')
+    print('- Type "up", "down", "left", "right" to move')
+    print('- Use "look" to inspect something')
+    print('- Good luck in the adventure')
+
+title_screen_selections()
