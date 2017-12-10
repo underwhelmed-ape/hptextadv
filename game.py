@@ -29,3 +29,30 @@ myPlayer = player()
 #will allow player to select menu options
 def title_screen_selections():
     option = input("> ")
+    if option.lower() == ("play"):
+        start_game() #placeholder
+    elif option.lower() == ("help"):
+        help_menu()
+    elif option.lower() == ("quit"):
+        sys.exit()
+    while option.lower() not in ['play', 'help', 'quit']:
+        print("Please enter a valid command.")
+        option = input("> ")
+        if option.lower() == ("play"):
+            start_game() #placeholder
+        elif option.lower() == ("help"):
+            help_menu()
+        elif option.lower() == ("quit"):
+            sys.exit()
+
+def title_screen():
+    os.system('clear')
+    print('################################')
+    print('# Ministry of Magic Mayham RPG #')
+    print('################################')
+    print('            - PLAY -            ')
+    print('            - HELP -            ')
+    print('            - QUIT -            ')
+    print(' -Created by Underwhelmed Ape-  ')
+
+title_screen_selections()
