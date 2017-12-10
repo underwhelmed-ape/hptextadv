@@ -57,7 +57,7 @@ def title_screen():
 
 title_screen_selections()
 
-def help_menu:
+def help_menu():
     print('################################')
     print('# Ministry of Magic Mayham RPG #')
     print('################################')
@@ -66,3 +66,5 @@ def help_menu:
     print('- Good luck in the adventure')
 
 title_screen_selections()
+
+def start_game():
