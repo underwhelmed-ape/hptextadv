@@ -20,6 +20,7 @@ class player:
         self.hp = 0 # int of hitpoints
         self.mp = 0 # int of magic points/energy
         self.status_effects = [] #array
+        self.location = 'start' # string of where player is at the time
 
 #initilise the player
 
@@ -67,4 +68,30 @@ def help_menu():
 
 title_screen_selections()
 
+
+###### GAME FUNCTIONALITY ######
+
 def start_game():
+
+
+
+
+
+###### MAP ######
+"""
+# player starts at b2
+  1   2   3   4
+-----------------
+|   |   |   |   |  a
+-----------------
+|   | x |   |   |  b
+-----------------
+|   |   |   |   |  c
+-----------------
+|   |   |   |   |  d
+-----------------
+
+"""
+
+# constant variables set-up
+
