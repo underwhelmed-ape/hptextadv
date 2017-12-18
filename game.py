@@ -95,3 +95,100 @@ def start_game():
 
 # constant variables set-up
 
+ZONENAME = ''
+DESCRIPTION = 'description'
+EXAMINATION = 'examine'
+SOLVED = 'False'
+UP = 'up', 'north'
+DOWN = 'down', 'south'
+LEFT = 'left', 'west'
+RIGHT = 'right', 'east'
+
+solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
+                'b1': False, 'b2': False, 'b3': False, 'b4': False,
+                'c1': False, 'c2': False, 'c3': False, 'c4': False,
+                'd1': False, 'd2': False, 'd3': False, 'd4': False,
+                }
+
+zonemap = {
+    'a1': {
+        ZONENAME: 'Town Market',
+        DESCRIPTION = 'A thriving market place where you can find many exotic objects',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = '',
+        DOWN = 'b1',
+        LEFT = '',
+        RIGHT = 'a2'
+    },
+    'a2': {
+        ZONENAME: 'Town Entrance',
+        DESCRIPTION = 'This is the main gate to the town',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = '',
+        DOWN = 'b2',
+        LEFT = 'a1',
+        RIGHT = 'a3'
+    },
+    'a3': {
+        ZONENAME: 'Town Square',
+        DESCRIPTION = 'A great place for a meeting',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = '',
+        DOWN = 'b3',
+        LEFT = 'a2',
+        RIGHT = 'a4'
+    },
+    'a4': {
+        ZONENAME: 'Town Hall',
+        DESCRIPTION = 'The home of bureaucracy',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = '',
+        DOWN = 'b4',
+        LEFT = 'a3',
+        RIGHT = ''
+    },
+    'b1': {
+        ZONENAME: "",
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = 'up', 'north',
+        DOWN = 'down', 'south',
+        LEFT = 'left', 'west',
+        RIGHT = 'right', 'east'
+    },
+    'b2': {
+        ZONENAME: 'Home',
+        DESCRIPTION = 'This is your home',
+        EXAMINATION = 'Your home looks as messy as always! You really should clean up.',
+        SOLVED = 'False',
+        UP = 'a2',
+        DOWN = 'c2',
+        LEFT = 'b1',
+        RIGHT = 'b3'
+    },
+    'b3': {
+        ZONENAME: "",
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = 'up', 'north',
+        DOWN = 'down', 'south',
+        LEFT = 'left', 'west',
+        RIGHT = 'right', 'east'
+    },
+    'b4': {
+        ZONENAME: "",
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = 'False',
+        UP = 'up', 'north',
+        DOWN = 'down', 'south',
+        LEFT = 'left', 'west',
+        RIGHT = 'right', 'east'
+    }
+}
