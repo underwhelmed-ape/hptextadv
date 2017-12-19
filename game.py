@@ -69,27 +69,21 @@ def help_menu():
 title_screen_selections()
 
 
-###### GAME FUNCTIONALITY ######
-
-def start_game():
-
-
-
 
 
 ###### MAP ######
 """
-# player starts at b2
-  1   2   3   4
------------------
-|   |   |   |   |  a
------------------
-|   | x |   |   |  b
------------------
-|   |   |   |   |  c
------------------
-|   |   |   |   |  d
------------------
+# player starts at b2 (x)
+      1   2   3   4
+    -----------------
+    |   |   |   |   |  a
+    -----------------
+    |   | x |   |   |  b
+    -----------------
+    |   |   |   |   |  c
+    -----------------
+    |   |   |   |   |  d
+    -----------------
 
 """
 
@@ -192,3 +186,24 @@ zonemap = {
         RIGHT = 'right', 'east'
     }
 }
+
+
+###### GAME INTERACTIVITY ######
+# handle printing locations, moving, examining, puzzles, triggered-events etc
+
+#show current location
+def print_location():
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+    print('# ' + myPlayer.location.upper() + ' #')
+    print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+
+def prompt():
+    print('\n' + '=====================')
+    print('What would like to do?')
+    action = input("> ")
+
+
+###### GAME FUNCTIONALITY ######
+def start_game():
+    return
