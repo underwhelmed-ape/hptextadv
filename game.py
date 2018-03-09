@@ -6,7 +6,7 @@ import textwrap # wrap text around the console for overflow
 import sys
 import os
 import time
-import random
+import random # generate pseudo-random numbers
 
 screen_width = 100
 
@@ -150,10 +150,10 @@ zonemap = {
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'a1',
+        DOWN: 'c1',
+        LEFT: '',
+        RIGHT: 'b2'
     },
     'b2': {
         ZONENAME: 'Home',
@@ -170,101 +170,111 @@ zonemap = {
         DESCRIPTION: '',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'a3',
+        DOWN: 'c3',
+        LEFT: 'b2',
+        RIGHT: 'b4'
     },
     'b4': {
         ZONENAME: "Empty Shack",
         DESCRIPTION: 'This house inside the forest was abandoned long ago ... it looks dangerous to enter ',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'a4',
+        DOWN: 'c4',
+        LEFT: 'b3',
+        RIGHT: ''
     },
     'c1': {
         ZONENAME: "The Dragon Tavern",
         DESCRIPTION: '',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'b1',
+        DOWN: 'd1',
+        LEFT: '',
+        RIGHT: 'c2'
     },
     'c2': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'b2',
+        DOWN: 'd2',
+        LEFT: 'c1',
+        RIGHT: 'c3'
     },
     'c3': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'b3',
+        DOWN: 'd3',
+        LEFT: 'c2',
+        RIGHT: 'c4'
     },
     'c4': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
-        DOWN: 'down', 'south',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        UP: 'b4',
+        DOWN: 'd4',
+        LEFT: 'c3',
+        RIGHT: ''
     },
     'd1': {
         ZONENAME: "The Dragon Tavern",
         DESCRIPTION: 'A popular local haunt. Bring your own glasses!',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
+        UP: 'c1',
         DOWN: '',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        LEFT: '',
+        RIGHT: 'd2'
     },
     'd2': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
+        UP: 'c2',
         DOWN: '',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        LEFT: 'd1',
+        RIGHT: 'd3'
     },
     'd3': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
+        UP: 'c3',
         DOWN: '',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        LEFT: 'd2',
+        RIGHT: 'd4'
     },
     'd4': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
-        UP: 'up', 'north',
+        UP: 'c4',
         DOWN: '',
-        LEFT: 'left', 'west',
-        RIGHT: 'right', 'east'
+        LEFT: 'd3',
+        RIGHT: ''
     }
+#    'd4': {
+#        ZONENAME: "",
+#        DESCRIPTION: 'description',
+#        EXAMINATION: 'examine',
+#        SOLVED: 'False',
+#        UP: 'up', 'north',
+#        DOWN: '',
+#        LEFT: 'left', 'west',
+#        RIGHT: 'right', 'east'
+#    }
 }
 
 
