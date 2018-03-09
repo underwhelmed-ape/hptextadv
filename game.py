@@ -107,7 +107,7 @@ solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
 zonemap = {
     'a1': {
         ZONENAME: 'Town Market',
-        DESCRIPTION: 'A thriving market place where you can find many exotic objects',
+        DESCRIPTION: 'A thriving market place where you can find many exotic and magical objects',
         EXAMINATION: 'examine',
         SOLVED: 'False',
         UP: '',
@@ -166,6 +166,36 @@ zonemap = {
         RIGHT: 'b3'
     },
     'b3': {
+        ZONENAME: "Forest",
+        DESCRIPTION: '',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: 'down', 'south',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'b4': {
+        ZONENAME: "Empty Shack",
+        DESCRIPTION: 'This house inside the forest was abandoned long ago ... it looks dangerous to enter ',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: 'down', 'south',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'c1': {
+        ZONENAME: "The Dragon Tavern",
+        DESCRIPTION: '',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: 'down', 'south',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'c2': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
@@ -175,13 +205,63 @@ zonemap = {
         LEFT: 'left', 'west',
         RIGHT: 'right', 'east'
     },
-    'b4': {
+    'c3': {
         ZONENAME: "",
         DESCRIPTION: 'description',
         EXAMINATION: 'examine',
         SOLVED: 'False',
         UP: 'up', 'north',
         DOWN: 'down', 'south',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'c4': {
+        ZONENAME: "",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: 'down', 'south',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'd1': {
+        ZONENAME: "The Dragon Tavern",
+        DESCRIPTION: 'A popular local haunt. Bring your own glasses!',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: '',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'd2': {
+        ZONENAME: "",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: '',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'd3': {
+        ZONENAME: "",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: '',
+        LEFT: 'left', 'west',
+        RIGHT: 'right', 'east'
+    },
+    'd4': {
+        ZONENAME: "",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: 'False',
+        UP: 'up', 'north',
+        DOWN: '',
         LEFT: 'left', 'west',
         RIGHT: 'right', 'east'
     }
