@@ -290,20 +290,31 @@ zonemap = {
 }
 
 
+
 ###### GAME INTERACTIVITY ######
 # handle printing locations, moving, examining, puzzles, triggered-events etc
 
 #show current location
 def print_location():
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
+    print('\n' + ('#' * (4 + len(myPlayer.location)))) # add to new lines
     print('# ' + myPlayer.location.upper() + ' #')
     print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
 def prompt():
-    print('\n' + '=====================')
+    print('\n' + '===============================')
     print('What would like to do?')
     action = input("> ")
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine']
+    while action.lower() not in acceptable_actions:
+        print("Unknown action, please try again. \n")
+        action = input("> ")
+    if action.lower() == 'quit':
+        sys.exit()
+    elif action.lower() in ['move', 'go', 'travel', 'walk']:
+        player.move(action.lower())
+    elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
+        player.examine(action.lower())
 
 
 ###### GAME FUNCTIONALITY ######
