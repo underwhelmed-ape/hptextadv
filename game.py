@@ -332,11 +332,18 @@ def player.move(myAction):
         destination = zonemap[myPlayer.location][RIGHT] # accessing where going to move to
         movement_handler(destination)
 
-
 def movement_handler(destination):
     print("\n" + "You have moved to " + destination + ".")
     myPlayer.location = destination
     print_location()
+
+
+def player.examine(action):
+    if zonemap[myPlayer.location][SOLVED] == True:
+        print("You have already completed this job")
+    else:
+        print("trigger puzzle here")     
+
 
 ###### GAME FUNCTIONALITY ######
 def start_game():
