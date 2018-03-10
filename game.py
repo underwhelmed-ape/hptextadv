@@ -301,7 +301,7 @@ def print_location():
     print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
-def prompt():
+def prompt(): # where we will promt player to do everything, can add fighting etc
     print('\n' + '===============================')
     print('What would like to do?')
     action = input("> ")
@@ -316,6 +316,27 @@ def prompt():
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
         player.examine(action.lower())
 
+def player.move(myAction):
+    ask = "Where would you like to go?\n"
+    dest = input(ask)
+    if dest in ['up', 'north']:
+        destination = zonemap[myPlayer.location][UP] # accessing where going to move to
+        movement_handler(destination)
+    if dest in ['down', 'south']:
+        destination = zonemap[myPlayer.location][DOWN] # accessing where going to move to
+        movement_handler(destination)
+    if dest in ['left', 'west']:
+        destination = zonemap[myPlayer.location][LEFT] # accessing where going to move to
+        movement_handler(destination)
+    if dest in ['right', 'east']:
+        destination = zonemap[myPlayer.location][RIGHT] # accessing where going to move to
+        movement_handler(destination)
+
+
+def movement_handler(destination):
+    print("\n" + "You have moved to " + destination + ".")
+    myPlayer.location = destination
+    print_location()
 
 ###### GAME FUNCTIONALITY ######
 def start_game():
