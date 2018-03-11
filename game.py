@@ -27,33 +27,6 @@ class player:
 
 myPlayer = player()
 
-###### Title Screen ######
-# will allow player to select menu options
-def title_screen():
-    os.system('clear')
-    print('#############################################')
-    print('######## Harry Potter Text Adventure ########') # placeholder game name
-    print('#############################################')
-    print('')
-    print('                   - PLAY -                  ')
-    print('                   - HELP -                  ')
-    print('                   - QUIT -                  ')
-    print('')
-    print('        -Created by Underwhelmed Ape-        ')
-
-def help_menu():
-    print('#############################################')
-    print('################# Help Menu #################') # placeholder game name
-    print('#############################################')
-    print('')
-    print('- Type "up", "down", "left", "right" to move')
-    print('- Use "look" to inspect something')
-    print('')
-    print('                   - PLAY -                  ')
-    print('                   - QUIT -                  ')
-    print('- Good luck in the adventure...')
-
-title_screen()
 
 def title_screen_selections():
     option = input("> ")
@@ -74,14 +47,34 @@ def title_screen_selections():
             sys.exit()
 
 
+###### Title Screen ######
+# will allow player to select menu options
+def title_screen():
+    os.system('clear')
+    print('#############################################')
+    print('######## Harry Potter Text Adventure ########') # placeholder game name
+    print('#############################################')
+    print('')
+    print('                   - PLAY -                  ')
+    print('                   - HELP -                  ')
+    print('                   - QUIT -                  ')
+    print('')
+    print('        -Created by Underwhelmed Ape-        ')
+    title_screen_selections()
 
-title_screen_selections()
 
-
-
-title_screen_selections()
-
-
+def help_menu():
+    print('#############################################')
+    print('################# Help Menu #################') # placeholder game name
+    print('#############################################')
+    print('')
+    print('- Type "up", "down", "left", "right" to move')
+    print('- Use "look" to inspect something')
+    print('')
+    print('                   - PLAY -                  ')
+    print('                   - QUIT -                  ')
+    print('- Good luck in the adventure...')
+    title_screen_selections()
 
 
 ###### MAP ######
@@ -317,7 +310,7 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
         player.examine(action.lower())
 
-def player.move(myAction):
+def player_move(myAction):
     ask = "Where would you like to go?\n"
     dest = input(ask)
     if dest in ['up', 'north']:
@@ -339,7 +332,7 @@ def movement_handler(destination):
     print_location()
 
 
-def player.examine(action):
+def player_examine(action):
     if zonemap[myPlayer.location][SOLVED] == True:
         print("You have already completed this job")
     else:
@@ -355,3 +348,10 @@ def main_game_loop():
         promt()
         #here handle if puzzles have been solved, boss defeated etc
         # keeps game promting until game is completed
+
+
+
+
+
+
+title_screen()
