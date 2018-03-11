@@ -21,6 +21,7 @@ class player:
         self.mp = 0 # int of magic points/energy
         self.status_effects = [] #array
         self.location = 'start' # string of where player is at the time
+        self.game_over = False
 
 #initilise the player
 
@@ -342,9 +343,15 @@ def player.examine(action):
     if zonemap[myPlayer.location][SOLVED] == True:
         print("You have already completed this job")
     else:
-        print("trigger puzzle here")     
+        print("trigger puzzle here")
 
 
 ###### GAME FUNCTIONALITY ######
 def start_game():
     return
+
+def main_game_loop():
+    while myPlayer.game_over == False:
+        promt()
+        #here handle if puzzles have been solved, boss defeated etc
+        # keeps game promting until game is completed
