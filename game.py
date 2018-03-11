@@ -17,6 +17,7 @@ screen_width = 100
 class player:
     def __init__(self):
         self.name = '' # string of player's name
+        self.role = '' # string of player's role in game
         self.hp = 0 # int of hitpoints
         self.mp = 0 # int of magic points/energy
         self.status_effects = [] #array
@@ -349,6 +350,41 @@ def main_game_loop():
         #here handle if puzzles have been solved, boss defeated etc
         # keeps game promting until game is completed
 
+def setup_game():
+    os.system('clear')
+
+    ###name collecting
+    question1 = "Hello, what's your name? \n"
+    for character in question1:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    player_name = input("> ")
+    myPlayer.name = player_name
+
+    ###name collecting
+    question2 = "What role do you want to play? \n"
+    question2additional = "You can be a Warrior, Mage or a Priest. \n"
+    for character in question2:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    for character in question2additional:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.01)
+    player_role = input("> ")
+    valid_jobs = ['warrior', 'mage', 'priest']
+    if player_role.lower() in valid_jobs
+        myPlayer.role = player_role
+        print("You are now a " + myPlayer.role + "! \n")
+    else:
+        while player_role.lower() not in valid_jobs
+        print("Please select a valid role for this adventure!")
+        player_role = input("> ")
+        if player_role.lower() in valid_jobs
+            myPlayer.role = player_role
+            print("You are now a " + myPlayer.role + "! \n")
 
 
 
