@@ -375,14 +375,14 @@ def setup_game():
         time.sleep(0.01)
     player_role = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest']
-    if player_role.lower() in valid_jobs
+    if player_role.lower() in valid_jobs:
         myPlayer.role = player_role
         print("You are now a " + myPlayer.role + "! \n")
     else:
-        while player_role.lower() not in valid_jobs
-        print("Please select a valid role for this adventure!")
-        player_role = input("> ")
-        if player_role.lower() in valid_jobs
+        while player_role.lower() not in valid_jobs:
+            print("Please select a valid role for this adventure!")
+            player_role = input("> ")
+        if player_role.lower() in valid_jobs:
             myPlayer.role = player_role
             print("You are now a " + myPlayer.role + "! \n")
 
@@ -394,7 +394,7 @@ def setup_game():
         elif myPlayer.job is 'mage':
             self.hp = 40 # int of hitpoints
             self.mp = 120 # int of magic points/energy
-        elif myPlayer.job is 'priest'
+        elif myPlayer.job is 'priest':
             self.hp = 60 # int of hitpoints
             self.mp = 60 # int of magic points/energy
 
