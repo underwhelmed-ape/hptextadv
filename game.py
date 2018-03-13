@@ -362,7 +362,7 @@ def setup_game():
     player_name = input("> ")
     myPlayer.name = player_name
 
-    ###name collecting
+    ### job handling
     question2 = "What role do you want to play? \n"
     question2additional = "You can be a Warrior, Mage or a Priest. \n"
     for character in question2:
@@ -386,8 +386,56 @@ def setup_game():
             myPlayer.role = player_role
             print("You are now a " + myPlayer.role + "! \n")
 
+        ###### Player stats #######
 
+        if myPlayer.job is 'warrior':
+            self.hp = 120 # int of hitpoints
+            self.mp = 20 # int of magic points/energy
+        elif myPlayer.job is 'mage':
+            self.hp = 40 # int of hitpoints
+            self.mp = 120 # int of magic points/energy
+        elif myPlayer.job is 'priest'
+            self.hp = 60 # int of hitpoints
+            self.mp = 60 # int of magic points/energy
 
+    ### Introduction
+    question3 = "Welcome, " + player_name + "the " + player_role + ".\n"
+    for character in question3:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    player_name = input("> ")
+    myPlayer.name = player_name
 
+# amending types of speech
+# gets more ominous as time gets longer
+
+    speech1 = "Welcome to the magical world!"
+    speech2 = "I hope it finds you well"
+    speech3 = "Don't get too lost"
+    speech4 = "hehehe..."
+    for character in speech1:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.03)
+    for character in speech2:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.03)
+    for character in speech3:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.1)
+    for character in speech4:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.2)
+
+    os.system('clear')
+    print("###################################")
+    print("#        Let's start now          #")
+    print("###################################")
+
+    main_game_loop()
 
 title_screen()
