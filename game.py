@@ -21,7 +21,7 @@ class player:
         self.hp = 0 # int of hitpoints
         self.mp = 0 # int of magic points/energy
         self.status_effects = [] #array
-        self.location = 'start' # string of where player is at the time
+        self.location = 'b2' # string of where player is at the time
         self.game_over = False
 
 #initilise the player
@@ -32,7 +32,7 @@ myPlayer = player()
 def title_screen_selections():
     option = input("> ")
     if option.lower() == ("play"):
-        start_game() #placeholder
+        setup_game()
     elif option.lower() == ("help"):
         help_menu()
     elif option.lower() == ("quit"):
@@ -41,7 +41,7 @@ def title_screen_selections():
         print("Please enter a valid command.")
         option = input("> ")
         if option.lower() == ("play"):
-            start_game() #placeholder
+            setup_game()
         elif option.lower() == ("help"):
             help_menu()
         elif option.lower() == ("quit"):
@@ -341,12 +341,10 @@ def player_examine(action):
 
 
 ###### GAME FUNCTIONALITY ######
-def start_game():
-    return
 
 def main_game_loop():
     while myPlayer.game_over == False:
-        promt()
+        prompt()
         #here handle if puzzles have been solved, boss defeated etc
         # keeps game promting until game is completed
 
@@ -399,7 +397,7 @@ def setup_game():
             self.mp = 60 # int of magic points/energy
 
     ### Introduction
-    question3 = "Welcome, " + player_name + "the " + player_role + ".\n"
+    question3 = "Welcome, " + player_name + " the " + player_role + ".\n"
     for character in question3:
         sys.stdout.write(character)
         sys.stdout.flush()
@@ -410,10 +408,10 @@ def setup_game():
 # amending types of speech
 # gets more ominous as time gets longer
 
-    speech1 = "Welcome to the magical world!"
-    speech2 = "I hope it finds you well"
-    speech3 = "Don't get too lost"
-    speech4 = "hehehe..."
+    speech1 = "Welcome to the magical world! \n"
+    speech2 = "I hope it finds you well \n"
+    speech3 = "Don't get too lost \n"
+    speech4 = "hehehe... \n"
     for character in speech1:
         sys.stdout.write(character)
         sys.stdout.flush()
