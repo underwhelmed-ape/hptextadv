@@ -307,9 +307,9 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     if action.lower() == 'quit':
         sys.exit()
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
-        player.move(action.lower())
+        player_move(action.lower())
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
-        player.examine(action.lower())
+        player_examine(action.lower())
 
 def player_move(myAction):
     ask = "Where would you like to go?\n"
