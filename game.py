@@ -382,7 +382,7 @@ def setup_game():
         sys.stdout.flush()
         time.sleep(0.01)
     player_house = input("> ")
-    valid_houses = ['Gryffindor', 'Slytherin', 'Hufflepuff', 'Ravenclaw']
+    valid_houses = ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw']
     if player_house.lower() in valid_houses:
         myPlayer.house = player_house
         print("You are now a " + myPlayer.house + "! \n")
