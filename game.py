@@ -17,7 +17,8 @@ screen_width = 100
 class player:
     def __init__(self):
         self.name = '' # string of player's name
-        self.role = '' # string of player's role in game
+        self.house = '' # string of player's house in game
+        self.subject = ''
         self.hp = 0 # int of hitpoints
         self.mp = 0 # int of magic points/energy
         self.status_effects = [] #array
@@ -351,53 +352,65 @@ def main_game_loop():
 def setup_game():
     os.system('clear')
 
-    ###name collecting
-    question1 = "Hello, what's your name? \n"
-    for character in question1:
+    ### name collecting
+    question_name = "Hello, what's your name? \n"
+    for character in question_name:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
     player_name = input("> ")
     myPlayer.name = player_name
 
-    ### job handling
-    question2 = "What role do you want to play? \n"
-    question2additional = "You can be a Warrior, Mage or a Priest. \n"
-    for character in question2:
+    ### name collecting
+    question_subject = "What was your favourite subject? \n"
+    for character in question_subject:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    for character in question2additional:
+    player_subject = input("> ")
+    myPlayer.subject = player_name
+
+    ### Hogwarts House
+    question_house = "What House do you belong to? \n"
+    question_house_additional = "You can be a Gryffindor, Slytherin, Hufflepuff or Ravenclaw. \n"
+    for character in question_house:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    for character in question_house_additional:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.01)
-    player_role = input("> ")
-    valid_jobs = ['warrior', 'mage', 'priest']
-    if player_role.lower() in valid_jobs:
-        myPlayer.role = player_role
-        print("You are now a " + myPlayer.role + "! \n")
+    player_house = input("> ")
+    valid_houses = ['Gryffindor', 'Slytherin', 'Hufflepuff', 'Ravenclaw']
+    if player_house.lower() in valid_houses:
+        myPlayer.house = player_house
+        print("You are now a " + myPlayer.house + "! \n")
     else:
-        while player_role.lower() not in valid_jobs:
-            print("Please select a valid role for this adventure!")
-            player_role = input("> ")
-        if player_role.lower() in valid_jobs:
-            myPlayer.role = player_role
-            print("You are now a " + myPlayer.role + "! \n")
+        while player_house.lower() not in valid_houses:
+            print("Please select a valid House for this adventure!")
+            player_house = input("> ")
+        if player_house.lower() in valid_houses:
+            myPlayer.house = player_house
+            print("You are now a " + myPlayer.house + "! \n")
 
         ###### Player stats #######
 
-        if myPlayer.job is 'warrior':
+        if myPlayer.house is 'Gryffindor':
             self.hp = 120 # int of hitpoints
             self.mp = 20 # int of magic points/energy
-        elif myPlayer.job is 'mage':
+        elif myPlayer.house is 'Slytherin':
             self.hp = 40 # int of hitpoints
             self.mp = 120 # int of magic points/energy
-        elif myPlayer.job is 'priest':
+        elif myPlayer.house is 'Hufflepuff':
+            self.hp = 60 # int of hitpoints
+            self.mp = 60 # int of magic points/energy
+        elif myPlayer.house is 'Ravenclaw':
             self.hp = 60 # int of hitpoints
             self.mp = 60 # int of magic points/energy
 
     ### Introduction
-    question3 = "Welcome, " + player_name + " the " + player_role + ".\n"
+    question3 = "Welcome, " + player_name + " from " + player_house + ".\n"
     for character in question3:
         sys.stdout.write(character)
         sys.stdout.flush()
