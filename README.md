@@ -1,4 +1,4 @@
-# hptextadv
+# Python-based Text Adventure Game
 
 ## Intro
 
