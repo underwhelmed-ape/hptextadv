@@ -24,10 +24,7 @@ class player:
         self.status_effects = [] #array
         self.location = 'b2' # string of where player is at the time
         self.game_over = False
-        self.inventory = [items.Wand(),
-                          items.Pocket_Knife(),
-                          'Money(50)',
-                          'KB_ticket(0)']
+
 
 #initilise the player
 
