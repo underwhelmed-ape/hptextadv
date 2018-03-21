@@ -8,14 +8,14 @@ import os
 import time
 import random # generate pseudo-random numbers
 
-from player import Player
+import player
 
 screen_width = 100
 
 
 #initilise the player
 
-myPlayer = player()
+myPlayer = player.Player()
 
 
 def title_screen_selections():

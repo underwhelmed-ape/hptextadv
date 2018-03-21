@@ -11,7 +11,7 @@ class NonPlayableCharacter():
         return self.player_name
 
 class Trader(NonPlayableCharacter):
-    def__init__(self):
+    def __init__(self):
         self.name = "Trader"
         self.Money = 10000
         self.inventory = [items.HealingPotion()]
