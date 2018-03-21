@@ -289,7 +289,7 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     print('\n' + '===============================')
     print('What would like to do?')
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine']
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine', 'inventory', 'inv', 'i']
     while action.lower() not in acceptable_actions:
         print("Unknown action, please try again. \n")
         action = input("> ")
@@ -299,6 +299,18 @@ def prompt(): # where we will promt player to do everything, can add fighting et
         player_move(action.lower())
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
         player_examine(action.lower())
+    elif action.lower() in ['inventory', 'inv', 'i']:
+        print("INVENTORY: \n")
+        pretty_print_unordered(myPlayer.inventory)
+
+# for printing inventory in easy to read manner
+def pretty_print_unordered(list):
+    for item in list:
+        print("* " + str(item))
+
+#def wizard_money(knuts):
+#    knuts / 
+
 
 def player_move(myAction):
     ask = "Where would you like to go?\n"
