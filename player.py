@@ -1,11 +1,26 @@
 import items
 
+
+###### Player Setup ######
+
+# establishing state of main character
+# this is a class used to store and initilise values of the player
+
 class Player:
-    def__init__(self):
+    def __init__(self):
         self.inventory = [items.Wand(),
                           items.Pocket_Knife(),
                           'Money(50)',
                           'KB_ticket(0)']
+        self.name = '' # string of player's name
+        self.house = '' # string of player's house in game
+        self.subject = ''
+        self.hp = 0 # int of hitpoints
+        self.mp = 0 # int of magic points/energy
+        self.status_effects = [] #array
+        self.location = 'b2' # string of where player is at the time
+        self.game_over = False
+
 
     def print_inventory(self):
         print("Inventory: ")
