@@ -308,8 +308,14 @@ def pretty_print_unordered(list):
     for item in list:
         print("* " + str(item))
 
-#def wizard_money(knuts):
-#    knuts / 
+# 29 knuts in sickle
+# 17 sickles in galleon
+# 493 knuts in galleon
+def wizard_money(knuts):
+    if knuts >= 493:
+        galleons = knuts / 493
+        remaining = knuts % 493
+    elif
 
 
 def player_move(myAction):
