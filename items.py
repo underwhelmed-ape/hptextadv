@@ -11,6 +11,12 @@ class Rock(Weapon):
         self.description = "A fist-sized rock, for bludgeoning"
         self.damage = 5
 
+class Dagger(Weapon):
+    def __init__(self)
+        self.name = "Dagger"
+        self.description = "A worn looking dagger"
+        self.damage = 10
+
 #class HealingPotion(Consumable):
 #    def __init__(self):
 #        self.name = "A basic Healing Potion"

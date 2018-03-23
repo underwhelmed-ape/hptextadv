@@ -302,18 +302,13 @@ def prompt(): # where we will promt player to do everything, can add fighting et
         player_examine(action.lower())
     elif action.lower() in ['inventory', 'inv', 'i']:
         print("INVENTORY: \n")
-        pretty_print_ordered(myPlayer.inventory)
+        pretty_print_unordered(myPlayer.inventory)
 
 # for printing inventory in easy to read manner
 def pretty_print_unordered(list):
     for item in list:
         print("* " + str(item))
 
-def pretty_print_ordered(list):
-    i = 1
-    for item in list:
-        print(str(i) + ". " + str(item))
-        i = i + 1
 
 # 29 knuts in sickle
 # 17 sickles in galleon
