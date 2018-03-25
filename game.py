@@ -380,7 +380,7 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_name = input("> ")
+    player_name = input("> ").strip()
     myPlayer.name = player_name
 
     ### name collecting
@@ -389,7 +389,7 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_subject = input("> ")
+    player_subject = input("> ").strip()
     myPlayer.subject = player_name
 
     ### Hogwarts House
@@ -403,7 +403,7 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.01)
-    player_house = input("> ")
+    player_house = input("> ").strip()
     valid_houses = ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw', 'g', 's', 'h', 'r']
     if player_house.lower() in valid_houses:
         myPlayer.house = player_house
@@ -411,7 +411,7 @@ def setup_game():
     else:
         while player_house.lower() not in valid_houses:
             print("Please select a valid House for this adventure!")
-            player_house = input("> ")
+            player_house = input("> ").strip()
         if player_house.lower() in valid_houses:
             myPlayer.house = player_house
             print("You are now a " + myPlayer.house + "! \n")
@@ -437,7 +437,7 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_name = input("> ")
+    player_name = input("> ").strip()
     myPlayer.name = player_name
 
 # amending types of speech
