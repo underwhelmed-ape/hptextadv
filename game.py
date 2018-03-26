@@ -418,16 +418,16 @@ def setup_game():
 
         ###### Player stats #######
 
-        if myPlayer.house is 'Gryffindor':
+        if myPlayer.house in ['Gryffindor', 'g']:
             self.hp = 120 # int of hitpoints
             self.mp = 20 # int of magic points/energy
-        elif myPlayer.house is 'Slytherin':
+        elif myPlayer.house in ['Slytherin', 's']:
             self.hp = 40 # int of hitpoints
             self.mp = 120 # int of magic points/energy
-        elif myPlayer.house is 'Hufflepuff':
+        elif myPlayer.house in ['Hufflepuff', 'h']:
             self.hp = 60 # int of hitpoints
             self.mp = 60 # int of magic points/energy
-        elif myPlayer.house is 'Ravenclaw':
+        elif myPlayer.house in ['Ravenclaw', 'r']:
             self.hp = 60 # int of hitpoints
             self.mp = 60 # int of magic points/energy
 
