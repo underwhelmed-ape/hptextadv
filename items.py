@@ -12,7 +12,7 @@ class Rock(Weapon):
         self.damage = 5
 
 class Dagger(Weapon):
-    def __init__(self)
+    def __init__(self):
         self.name = "Dagger"
         self.description = "A worn looking dagger"
         self.damage = 10
