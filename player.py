@@ -12,7 +12,7 @@ class Player:
         self.inventory = [#items.Wand(),
                           #items.Pocket_Knife(),
                           #items.Rock(),
-                          'Money(50)',
+                          items.Purse(),  
                           'KB_ticket(0)']
         self.name = '' # string of player's name
         self.house = '' # string of player's house in game

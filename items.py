@@ -22,3 +22,10 @@ class Dagger(Weapon):
 #        self.name = "A basic Healing Potion"
 #        self.healing_value = 50
 #        self.value = 986 # 2G 0S 0K
+
+
+class Purse():
+    def __init__(self):
+        self.name = "A standard sized purse with all your money"
+        self.description = "This purse only holds 15 Galleons"
+        self.value = 0
