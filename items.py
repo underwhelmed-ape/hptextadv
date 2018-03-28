@@ -29,3 +29,10 @@ class Purse():
         self.name = "A standard sized purse with all your money"
         self.description = "This purse only holds 15 Galleons"
         self.value = 0
+
+
+class Pocket_Knife():
+    def __init__(self):
+        self.name = "A small Pocket Knife"
+        self.description = "This looks ordinary but looks can be deceiving"
+        self.value = 200
