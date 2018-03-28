@@ -13,7 +13,6 @@ import player
 
 screen_width = 100
 
-
 #initilise the player
 
 myPlayer = player.Player()
