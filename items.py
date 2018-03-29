@@ -43,3 +43,9 @@ class Sneakoscope():
         self.name = "A basic Sneakoscope"
         self.description = "Useful for detecting untrustworthy people around you"
         self.value = 800
+
+class Potions_kit():
+    def __init__(self):
+        self.name = "A portable potions kit for on the go antidotes"
+        self.description = "This kit is useful for whipping up emergency antidotes and poisons"
+        self.value = 1200
