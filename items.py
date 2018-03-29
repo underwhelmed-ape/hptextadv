@@ -36,3 +36,10 @@ class Pocket_Knife():
         self.name = "A small Pocket Knife"
         self.description = "This looks ordinary but looks can be deceiving"
         self.value = 200
+
+
+class Sneakoscope():
+    def __init__(self):
+        self.name = "A basic Sneakoscope"
+        self.description = "Useful for detecting untrustworthy people around you"
+        self.value = 800
