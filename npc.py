@@ -2,6 +2,14 @@
 
 import items
 
+class Person:
+    age = 21
+    name = "Name"
+
+    def birth_year():
+        return 2018 - age
+
+
 # Trader character
 class NonPlayableCharacter():
     def__init__(self):
