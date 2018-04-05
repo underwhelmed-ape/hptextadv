@@ -9,6 +9,9 @@ class Person:
     def birth_year():
         return 2018 - age
 
+people = [Person(), Person(), Person()]
+
+people[0].name = "Ed"
 
 # Trader character
 class NonPlayableCharacter():
