@@ -15,8 +15,8 @@ people[0].name = "Ed"
 
 # Trader character
 class NonPlayableCharacter():
-    def__init__(self):
-        raise NotImplementedError("Do not create raw NPC objects.")
+    def __init__(self, name, role):
+
 
     def__str__(self):
         return self.player_name
