@@ -2,24 +2,15 @@
 
 import items
 
-class Person:
-    age = 21
-    name = "Name"
-
-    def birth_year():
-        return 2018 - age
-
-people = [Person(), Person(), Person()]
-
-people[0].name = "Ed"
 
 # Trader character
 class NonPlayableCharacter():
     def __init__(self, name, role):
+        self.name = Name
+        self.role = Role
 
 
-    def__str__(self):
-        return self.player_name
+
 
 class Trader(NonPlayableCharacter):
     def __init__(self):

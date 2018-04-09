@@ -9,9 +9,9 @@ import items
 
 class Player:
     def __init__(self):
-        self.inventory = [#items.Wand(),
+        self.inventory = [items.Wand(),
                           items.Pocket_Knife(),
-                          #items.Rock(),
+                          items.Rock(),
                           items.Purse(),
                           'KB_ticket(0)']
         self.name = '' # string of player's name

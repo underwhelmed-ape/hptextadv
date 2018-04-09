@@ -5,6 +5,11 @@ class Weapon:
     def __str__(self):
         return self.player_name
 
+class Wand(Weapon):
+    def __init__(self):
+        self.name = "This is your wand, it chose you."
+        self.description = "This is your most important tool, look after it!! You cannot do magic without it"
+
 class Rock(Weapon):
     def __init__(self):
         self.name = "Rock"
