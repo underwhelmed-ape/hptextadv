@@ -1,29 +1,5 @@
-class Weapon:
-    def __str__(self):
-        return self.name
+from money_exchange import wizard_money
 
-class Wand(Weapon):
-    def __init__(self):
-        self.name = "This is your wand, it chose you."
-        self.description = "This is your most important tool, look after it!! You cannot do magic without it"
-
-class Rock(Weapon):
-    def __init__(self):
-        self.name = "Rock"
-        self.description = "A fist-sized rock, for bludgeoning"
-        self.damage = 5
-
-class Dagger(Weapon):
-    def __init__(self):
-        self.name = "Dagger"
-        self.description = "A worn looking dagger"
-        self.damage = 10
-
-#class HealingPotion(Consumable):
-#    def __init__(self):
-#        self.name = "A basic Healing Potion"
-#        self.healing_value = 50
-#        self.value = 986 # 2G 0S 0K
 
 
 
@@ -34,9 +10,12 @@ class Item:
 
 class Purse(Item):
     def __init__(self):
-        self.name = "A standard sized purse with all your money"
-        self.description = "This purse only holds 15 Galleons"
+        self.name = "Standard Purse"
+        self.description = "A standard sized purse with all your money.\nThis purse only holds 15 Galleons"
         self.value = 0
+    
+    def purse_contents(self):
+        return wizard_money(self.value)
 
 
 class Pocket_Knife(Item):
@@ -50,10 +29,26 @@ class Sneakoscope(Item):
     def __init__(self):
         self.name = "A basic Sneakoscope"
         self.description = "Useful for detecting untrustworthy people around you"
-        self.value = 800
+        self.cost = 800
 
-class Potions_kit(Item):
+class BasicPotionsKit(Item):
     def __init__(self):
-        self.name = "A portable potions kit for on the go antidotes"
-        self.description = "This kit is useful for whipping up emergency antidotes and poisons"
-        self.value = 1200
+        self.name = "Basic Potions Kit"
+        self.description = "This lightweight kit is useful for whipping up emergency antidotes and poisons"
+        self.cost = 1200
+
+
+
+
+
+if __name__ == "__main__":
+    from items import Purse
+
+    purse = Purse()
+    purse.value = 200
+    print(purse.purse_contents())
+
+    purse.value += -60
+    print(purse.purse_contents())
+
+    print(purse)
