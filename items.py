@@ -7,15 +7,19 @@ class Item:
     def __str__(self):
         return self.name
 
-
 class Purse(Item):
     def __init__(self):
         self.name = "Standard Purse"
         self.description = "A standard sized purse with all your money.\nThis purse only holds 15 Galleons"
-        self.value = 0
+        self.value = 670
     
     def purse_contents(self):
         return wizard_money(self.value)
+
+    def __str__(self):
+        return f'{self.name} \n{self.purse_contents()}'
+
+
 
 
 class Pocket_Knife(Item):
