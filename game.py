@@ -55,11 +55,12 @@ def title_screen():
 
 def help_menu():
     print('#############################################')
-    print('################# Help Menu #################') # placeholder game name
+    print('################# Help Menu #################')
     print('#############################################')
     print('')
     print('- Type "up", "down", "left", "right" to move')
     print('- Use "look" to inspect something')
+    print('- Type "i" to view inventory')
     print('')
     print('                   - PLAY -                  ')
     print('                   - QUIT -                  ')
@@ -300,37 +301,7 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
         player_examine(action.lower())
     elif action.lower() in ['inventory', 'inv', 'i']:
-        print("INVENTORY: \n")
-        pretty_print_unordered(myPlayer.inventory)
-
-# for printing inventory in easy to read manner
-def pretty_print_unordered(list):
-    for item in list:
-        print("* " + str(item))
-
-
-# 29 knuts in sickle
-# 17 sickles in galleon
-# 493 knuts in galleon
-# requires import math
-def wizard_money(knuts):
-    if knuts == 0:
-        print("You have no money in your pouch")
-    elif knuts < 29:
-        print("Knuts: " + str(knuts))
-    elif knuts < 493:
-        sickles = math.floor(knuts / 29)
-        remaining = knuts % 29
-        print("Sickles: " + str(sickles))
-        print("Knuts: " + str(remaining))
-    elif knuts >= 493:
-        galleons = math.floor(knuts / 493)
-        remaining_knuts = knuts % 493
-        sickles = math.floor(remaining_knuts / 29)
-        remaining = remaining_knuts % 29
-        print("Galleons: " + str(galleons))
-        print("Sickles: " + str(sickles))
-        print("Knuts: " + str(remaining))
+        myPlayer.print_inventory()
 
 
 def player_move(myAction):
@@ -401,11 +372,20 @@ def setup_game():
     for character in question_house_additional:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.01)
+        time.sleep(0.005)
     player_house = input("> ").strip()
     valid_houses = ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw', 'g', 's', 'h', 'r']
     if player_house.lower() in valid_houses:
-        myPlayer.house = player_house
+
+        if player_house.lower() in ['g', 'gryffindor']:
+            myPlayer.house = 'Gryffindor'
+        if player_house.lower() in ['s', 'slytherin']:
+            myPlayer.house = 'Slytherin'    
+        if player_house.lower() in ['h', 'hufflepuff']:
+            myPlayer.house = 'Hufflepuff'    
+        if player_house.lower() in ['r', 'ravenclaw']:
+            myPlayer.house = 'Ravenclaw'    
+
         print("You are now a " + myPlayer.house + "! \n")
     else:
         while player_house.lower() not in valid_houses:
@@ -417,51 +397,51 @@ def setup_game():
 
         ###### Player stats #######
 
-        if myPlayer.house in ['Gryffindor', 'g']:
-            self.hp = 120 # int of hitpoints
-            self.mp = 20 # int of magic points/energy
-        elif myPlayer.house in ['Slytherin', 's']:
-            self.hp = 40 # int of hitpoints
-            self.mp = 120 # int of magic points/energy
-        elif myPlayer.house in ['Hufflepuff', 'h']:
-            self.hp = 60 # int of hitpoints
-            self.mp = 60 # int of magic points/energy
-        elif myPlayer.house in ['Ravenclaw', 'r']:
-            self.hp = 60 # int of hitpoints
-            self.mp = 60 # int of magic points/energy
+        if myPlayer.house == 'Gryffindor':
+            self.hp = 120 # hitpoints - int
+            self.mp = 20 # magic strength - int
+        elif myPlayer.house == 'Slytherin':
+            self.hp = 40
+            self.mp = 120
+        elif myPlayer.house == 'Hufflepuff':
+            self.hp = 60
+            self.mp = 60
+        elif myPlayer.house == 'Ravenclaw':
+            self.hp = 60
+            self.mp = 60
 
     ### Introduction
-    question3 = "Welcome, " + player_name + " from " + player_house + ".\n"
+    question3 = f'Welcome {myPlayer.name} from {myPlayer.house} to the Ministry of Magic. \n' 
+
     for character in question3:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_name = input("> ").strip()
-    myPlayer.name = player_name
+    myPlayer.name = input("> ").strip()
 
 # amending types of speech
 # gets more ominous as time gets longer
 
-    speech1 = "Welcome to the magical world! \n"
-    speech2 = "I hope it finds you well \n"
-    speech3 = "Don't get too lost \n"
-    speech4 = "hehehe... \n"
-    for character in speech1:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.03)
-    for character in speech2:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.03)
-    for character in speech3:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.1)
-    for character in speech4:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.2)
+    # speech1 = "Welcome to the magical world! \n"
+    # speech2 = "I hope it finds you well \n"
+    # speech3 = "Don't get too lost \n"
+    # speech4 = "hehehe... \n"
+    # for character in speech1:
+    #     sys.stdout.write(character)
+    #     sys.stdout.flush()
+    #     time.sleep(0.03)
+    # for character in speech2:
+    #     sys.stdout.write(character)
+    #     sys.stdout.flush()
+    #     time.sleep(0.03)
+    # for character in speech3:
+    #     sys.stdout.write(character)
+    #     sys.stdout.flush()
+    #     time.sleep(0.1)
+    # for character in speech4:
+    #     sys.stdout.write(character)
+    #     sys.stdout.flush()
+    #     time.sleep(0.2)
 
     os.system('clear')
     print("###################################")
