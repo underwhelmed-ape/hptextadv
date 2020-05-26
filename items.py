@@ -4,6 +4,9 @@ from money_exchange import wizard_money
 
 
 class Item:
+    def __init__(self):
+        raise NotImplementedError('Do not create raw Item objects')
+
     def __str__(self):
         return self.name
 
@@ -34,6 +37,7 @@ class Sneakoscope(Item):
         self.name = "A basic Sneakoscope"
         self.description = "Useful for detecting untrustworthy people around you"
         self.cost = 800
+        self.enabled = False
 
 class BasicPotionsKit(Item):
     def __init__(self):
