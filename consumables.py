@@ -7,10 +7,10 @@ class BasicHealingPotion(Consumable):
    def __init__(self):
        self.name = "A basic Healing Potion"
        self.healing_value = 50
-       self.cost = 986
+       self.value = 986
 
 class KnightsBusTicket(Consumable):
     def __init__(self):
        self.name = "One ticket for the Knight's Bus"
        self.healing_value = 50
-       self.cost = 319
+       self.value = 319

@@ -14,7 +14,7 @@ class Purse(Item):
     def __init__(self):
         self.name = "Standard Purse"
         self.description = "A standard sized purse with all your money.\nThis purse only holds 15 Galleons"
-        self.value = 670
+        self.value = 493 * 2
     
     def purse_contents(self):
         return wizard_money(self.value)
@@ -36,14 +36,14 @@ class Sneakoscope(Item):
     def __init__(self):
         self.name = "A basic Sneakoscope"
         self.description = "Useful for detecting untrustworthy people around you"
-        self.cost = 800
+        self.value = 800
         self.enabled = False
 
 class BasicPotionsKit(Item):
     def __init__(self):
         self.name = "Basic Potions Kit"
         self.description = "This lightweight kit is useful for whipping up emergency antidotes and poisons"
-        self.cost = 1200
+        self.value = 1200
 
 
 
