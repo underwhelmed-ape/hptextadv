@@ -13,13 +13,14 @@ class Player:
         self.inventory = [Wand(),
                           Pocket_Knife(),
                           Purse()]
-        self.name = '' # string of player's name
-        self.house = '' # string of player's house in game
+        self.name = ''
+        self.house = ''
         self.subject = ''
-        self.hp = 0 # int of hitpoints
-        self.mp = 0 # int of magic points/energy
+        self.hp = 0
+        self.mp = 0
         self.status_effects = []
-        self.location = 'b2'
+        self.x = 1
+        self.y = 2
         self.game_over = False
 
 
@@ -33,6 +34,23 @@ class Player:
         '''add or subtract money when receiving or spending money'''
         self.inventory[2].value += knuts
         print(f'You now have: \n{wizard_money(self.inventory[2].value)} \nin your wallet.')
+
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+    
+    def move_north(self):
+        self.move(0,1)
+
+    def move_south(self):
+        self.move(0,-1)
+
+    def move_east(self):
+        self.move(1,0)
+
+    def move_west(self):
+        self.move(-1,0)
+        
 
 
 if __name__ == "__main__":
