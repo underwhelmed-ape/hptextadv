@@ -9,65 +9,85 @@ import time
 import random # generate pseudo-random numbers
 import math
 
-import player
+from player import Player
+import world
 
 screen_width = 100
 
 #initilise the player
 
-myPlayer = player.Player()
-
-
-def title_screen_selections():
-    option = input("> ")
-    if option.lower() == ("play"):
-        setup_game()
-    elif option.lower() == ("help"):
-        help_menu()
-    elif option.lower() == ("quit"):
-        sys.exit()
-    while option.lower() not in ['play', 'help', 'quit']:
-        print("Please enter a valid command.")
-        option = input("> ")
-        if option.lower() == ("play"):
-            setup_game()
-        elif option.lower() == ("help"):
-            help_menu()
-        elif option.lower() == ("quit"):
-            sys.exit()
-
+player = Player()
 
 ###### Title Screen ######
 # will allow player to select menu options
+
 def title_screen():
     os.system('clear')
-    print('#############################################')
-    print('######## Harry Potter Text Adventure ########') # placeholder game name
-    print('#############################################')
+    print('##############################################')
+    print('######## Harry Potter Text Adventure #########') # placeholder game name
+    print('##############################################')
     print('')
-    print('                   - PLAY -                  ')
-    print('                   - HELP -                  ')
-    print('                   - QUIT -                  ')
+    print('                  -  PLAY  -                  ')
+    print('                  -  HELP  -                  ')
+    print('                  -  ABOUT -                  ')
+    print('                  -  QUIT  -                  ')
     print('')
     print('        -Created by Underwhelmed Ape-        ')
     title_screen_selections()
 
 
 def help_menu():
-    print('#############################################')
-    print('################# Help Menu #################')
-    print('#############################################')
+    print('##############################################')
+    print('################# Help Menu ##################')
+    print('##############################################')
     print('')
     print('- Type "up", "down", "left", "right" to move')
     print('- Use "look" to inspect something')
     print('- Type "i" to view inventory')
     print('')
-    print('                   - PLAY -                  ')
-    print('                   - QUIT -                  ')
+    print('                  -  PLAY  -                  ')
+    print('                  -  ABOUT -                  ')
+    print('                  -  QUIT  -                  ')
+    print('- Good luck in the adventure...')
+    title_screen_selections()
+
+def about_menu():
+    print('##############################################')
+    print('################# About Menu #################')
+    print('##############################################')
+    print('This is the about screen')
+    print('This will be filled in later')
+    print('')
+    print('')
+    print('')
+    print('                  -  PLAY  -                  ')
+    print('                  -  HELP  -                  ')
+    print('                  -  QUIT  -                  ')
     print('- Good luck in the adventure...')
     title_screen_selections()
 
 
+def title_screen_selections():
+    option = input("> ")
+    if option.lower() in ['play', 'p']:
+        setup_game()
+    elif option.lower() in ['help', 'h']:
+        help_menu()
+    elif option.lower() in ['about', 'a']:
+        about_menu()
+    elif option.lower() in ['quit', 'q']:
+        sys.exit()
+    while option.lower() not in ['play', 'help', 'about', 'quit', 'p', 'h', 'a', 'q']:
+        print("Please enter a valid command.")
+        option = input("> ")
+        if option.lower() in ['play', 'p']:
+            setup_game()
+        elif option.lower() in ['help', 'h']:
+            help_menu()
+        elif option.lower() in ['about', 'a']:
+            about_menu()
+        elif option.lower() in ['quit', 'q']:
+            sys.exit()
 
 
 
@@ -75,11 +95,11 @@ def help_menu():
 # handle printing locations, moving, examining, puzzles, triggered-events etc
 
 #show current location
-def print_location():
-    print('\n' + ('#' * (4 + len(myPlayer.location)))) # add to new lines
-    print('# ' + myPlayer.location.upper() + ' #')
-    print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
+# def print_location():
+#     print('\n' + ('#' * (4 + len(player.location)))) # add to new lines
+#     print('# ' + player.location.upper() + ' #')
+#     print('# ' + zonemap[player.location][DESCRIPTION] + ' #')
+#     print('\n' + ('#' * (4 + len(player.location))))
 
 def prompt(): # where we will promt player to do everything, can add fighting etc
     print('\n' + '===============================')
@@ -96,33 +116,39 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
         player_examine(action.lower())
     elif action.lower() in ['inventory', 'inv', 'i']:
-        myPlayer.print_inventory()
+        player.print_inventory()
 
 
 def player_move(myAction):
     ask = "Where would you like to go?\n"
     dest = input(ask)
-    if dest in ['up', 'north']:
-        destination = zonemap[myPlayer.location][UP] # accessing where going to move to
-        movement_handler(destination)
-    if dest in ['down', 'south']:
-        destination = zonemap[myPlayer.location][DOWN] # accessing where going to move to
-        movement_handler(destination)
-    if dest in ['left', 'west']:
-        destination = zonemap[myPlayer.location][LEFT] # accessing where going to move to
-        movement_handler(destination)
-    if dest in ['right', 'east']:
-        destination = zonemap[myPlayer.location][RIGHT] # accessing where going to move to
-        movement_handler(destination)
+    if dest in ['up', 'north', 'n', 'N']:
+        player.move_north()
+        #destination = zonemap[player.location][UP] # accessing where going to move to
+        movement_handler()
+    if dest in ['down', 'south', 's', 'S']:
+        player.move_south()
+        #destination = zonemap[player.location][DOWN] # accessing where going to move to
+        movement_handler()
+    if dest in ['left', 'west', 'w', 'W']:
+        player.move_west()
+        #destination = zonemap[player.location][LEFT] # accessing where going to move to
+        movement_handler()
+    if dest in ['right', 'east', 'e', 'E']:
+        player.move_east()
+        #destination = zonemap[player.location][RIGHT] # accessing where going to move to
+        movement_handler()
 
-def movement_handler(destination):
-    print("\n" + "You have moved to " + destination + ".")
-    myPlayer.location = destination
-    print_location()
+def movement_handler():
+    X = player.x
+    Y = player.y
+    print(f'\nYou have moved to {world.tile_at(X, Y)}.')
+    #player.location = destination
+    #print_location()
 
 
 def player_examine(action):
-    if zonemap[myPlayer.location][SOLVED] == True:
+    if zonemap[player.location][SOLVED] == True:
         print("You have already completed this job")
     else:
         print("trigger puzzle here")
@@ -131,7 +157,9 @@ def player_examine(action):
 ###### GAME FUNCTIONALITY ######
 
 def main_game_loop():
-    while myPlayer.game_over == False:
+    while player.game_over == False:
+        room = world.tile_at(player.x, player.y)
+        print(room.intro_text())
         prompt()
         #here handle if puzzles have been solved, boss defeated etc
         # keeps game promting until game is completed
@@ -146,7 +174,7 @@ def setup_game():
         sys.stdout.flush()
         time.sleep(0.05)
     player_name = input("> ").strip()
-    myPlayer.name = player_name
+    player.name = player_name
 
     ### name collecting
     question_subject = "What was your favourite subject? \n"
@@ -155,7 +183,7 @@ def setup_game():
         sys.stdout.flush()
         time.sleep(0.05)
     player_subject = input("> ").strip()
-    myPlayer.subject = player_name
+    player.subject = player_name
 
     ### Hogwarts House
     question_house = "What House do you belong to? \n"
@@ -173,46 +201,46 @@ def setup_game():
     if player_house.lower() in valid_houses:
 
         if player_house.lower() in ['g', 'gryffindor']:
-            myPlayer.house = 'Gryffindor'
+            player.house = 'Gryffindor'
         if player_house.lower() in ['s', 'slytherin']:
-            myPlayer.house = 'Slytherin'    
+            player.house = 'Slytherin'    
         if player_house.lower() in ['h', 'hufflepuff']:
-            myPlayer.house = 'Hufflepuff'    
+            player.house = 'Hufflepuff'    
         if player_house.lower() in ['r', 'ravenclaw']:
-            myPlayer.house = 'Ravenclaw'    
+            player.house = 'Ravenclaw'    
 
-        print("You are now a " + myPlayer.house + "! \n")
+        print("You are now a " + player.house + "! \n")
     else:
         while player_house.lower() not in valid_houses:
             print("Please select a valid House for this adventure!")
             player_house = input("> ").strip()
         if player_house.lower() in valid_houses:
-            myPlayer.house = player_house
-            print("You are now a " + myPlayer.house + "! \n")
+            player.house = player_house
+            print("You are now a " + player.house + "! \n")
 
         ###### Player stats #######
 
-        if myPlayer.house == 'Gryffindor':
+        if player.house == 'Gryffindor':
             self.hp = 120 # hitpoints - int
             self.mp = 20 # magic strength - int
-        elif myPlayer.house == 'Slytherin':
+        elif player.house == 'Slytherin':
             self.hp = 40
             self.mp = 120
-        elif myPlayer.house == 'Hufflepuff':
+        elif player.house == 'Hufflepuff':
             self.hp = 60
             self.mp = 60
-        elif myPlayer.house == 'Ravenclaw':
+        elif player.house == 'Ravenclaw':
             self.hp = 60
             self.mp = 60
 
     ### Introduction
-    question3 = f'Welcome {myPlayer.name} from {myPlayer.house} to the Ministry of Magic. \n' 
+    question3 = f'Welcome {player.name} from {player.house} to the Ministry of Magic. \n' 
 
     for character in question3:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    myPlayer.name = input("> ").strip()
+    player.name = input("> ").strip()
 
 # amending types of speech
 # gets more ominous as time gets longer
