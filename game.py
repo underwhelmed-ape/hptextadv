@@ -8,6 +8,7 @@ import os
 import time
 import random # generate pseudo-random numbers
 import math
+from collections import OrderedDict
 
 from player import Player
 import world
@@ -152,6 +153,24 @@ def player_examine(action):
         print("You have already completed this job")
     else:
         print("trigger puzzle here")
+
+## LIMITING ACTIONS
+
+
+if player.inventory:
+    actions['i'] = player.print_inventory
+    actions['I'] = player.print_inventory
+    actions['inventory'] = player.print_inventory
+    actions['inv'] = player.print_inventory
+    print('i: View Inventory')
+
+def get_available_actions(room, player):
+    actions = OrderedDict()
+    
+
+
+def action_adder():
+    pass
 
 
 ###### GAME FUNCTIONALITY ######
