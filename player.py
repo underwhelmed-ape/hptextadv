@@ -12,7 +12,7 @@ class Player:
     def __init__(self):
         self.inventory = [Wand(),
                           Pocket_Knife(),
-                          Purse()]
+                          Purse(493 * 2)]
         self.name = ''
         self.house = ''
         self.subject = ''
@@ -21,8 +21,10 @@ class Player:
         self.status_effects = []
         self.x = 1
         self.y = 2
-        self.game_over = False
+        self.victory = False
 
+    def is_alive(self):
+        return self.hp > 0 # if >0, will return True, else False
 
     def print_inventory(self):
         print("Inventory: ")

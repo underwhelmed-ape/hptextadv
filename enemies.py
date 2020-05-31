@@ -11,4 +11,13 @@ class Enemy:
 
 class FinalBoss(Enemy):
     def __init__(self):
-        pass
+        self.name = 'Willy Widdershins'
+        self.hp = 150
+        self.damage = 50
+
+
+
+
+
+if __name__ == "__main__":
+    pass

@@ -157,20 +157,24 @@ def player_examine(action):
 ## LIMITING ACTIONS
 
 
-if player.inventory:
-    actions['i'] = player.print_inventory
-    actions['I'] = player.print_inventory
-    actions['inventory'] = player.print_inventory
-    actions['inv'] = player.print_inventory
-    print('i: View Inventory')
 
 def get_available_actions(room, player):
     actions = OrderedDict()
-    
+    print('Choose an action: ')
+
+    if player.inventory:
+        action_adder(actions, 'i', player.print_inventory, 'Print Inventory')
+
+
+
 
 
 def action_adder():
-    pass
+        actions['i'] = player.print_inventory
+        actions['I'] = player.print_inventory
+        actions['inventory'] = player.print_inventory
+        actions['inv'] = player.print_inventory
+        print('i: View Inventory')
 
 
 ###### GAME FUNCTIONALITY ######
@@ -240,16 +244,16 @@ def setup_game():
         ###### Player stats #######
 
         if player.house == 'Gryffindor':
-            self.hp = 120 # hitpoints - int
-            self.mp = 20 # magic strength - int
+            self.hp = 100 # hitpoints - int
+            self.mp = 100 # magic strength - int
         elif player.house == 'Slytherin':
-            self.hp = 40
+            self.hp = 100
             self.mp = 120
         elif player.house == 'Hufflepuff':
-            self.hp = 60
+            self.hp = 100
             self.mp = 60
         elif player.house == 'Ravenclaw':
-            self.hp = 60
+            self.hp = 100
             self.mp = 60
 
     ### Introduction
