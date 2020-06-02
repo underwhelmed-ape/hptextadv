@@ -81,11 +81,11 @@ Your one stop shop for all your magical needs''')
     
     def swap(self, item, player):
         if item.value > player.inventory[2].value:
-            print("You don't have enough Gold")
+            print(f"You only have {player.inventory[2].value} knuts")
             return
         else:
             self.trader.inventory.remove(item)
-            player.inventory[2].value -= item.value
+            player.exchange_money(-item.value) # as buying, value needs to be negative
             print(f'Thank you for buying {item}')
             print(f'\nHere are my new wares! \n')
             for i, item in enumerate(self.trader.inventory, 1):
@@ -117,8 +117,6 @@ def tile_at(x, y):
 
 
 if __name__ == "__main__":
-    print(tile_at(1,2))
-
     from player import Player
 
     my_player = Player()
