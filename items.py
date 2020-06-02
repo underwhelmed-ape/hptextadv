@@ -10,8 +10,8 @@ class Item:
     def __str__(self):
         return self.name
 
-class Purse(Item, value):
-    def __init__(self):
+class Purse(Item):
+    def __init__(self, value):
         self.name = "Standard Purse"
         self.description = "A standard sized purse with all your money.\nThis purse only holds 15 Galleons"
         self.value = value
@@ -52,8 +52,8 @@ class BasicPotionsKit(Item):
 if __name__ == "__main__":
     from items import Purse
 
-    purse = Purse()
-    purse.value = 200
+    purse = Purse(200)
+
     print(purse.purse_contents())
 
     purse.value += -60
