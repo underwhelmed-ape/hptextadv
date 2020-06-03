@@ -1,0 +1,36 @@
+class Spell:
+    def __init__(self):
+        raise NotImplementedError("Do not create raw Spell objects")
+    
+    def __str__(self):
+        return self.name
+
+
+class Anteoculatia(spell):
+    def __init__(self):
+        self.name = 'Anteoculatia'
+        self.pronounce = 'an-tee-oh-kyoo-LAY-chee-ah'
+        self.effect = 'Causes the target to grow antlers'
+        self.damage = 0
+
+class Expelliarmus(spell):
+    def __init__(self):
+        self.name = 'Expelliarmus'
+        self.pronounce = ' ex-PELL-ee-ARE-muss '
+        self.effect = 'Disarming Charm'
+        self.damage = 0
+
+class AvadaKedavra(spell):
+    def __init__(self):
+        self.name = 'Avada Kedavra'
+        self.pronounce = 'ah-VAH-dah keh-DAV-rah'
+        self.effect = 'Death'
+        self.damage = 1000
+
+class Aguamenti(spell):
+    def __init__(self):
+        self.name = 'Aguamenti'
+        self.pronounce = 'AH-gwah-MEN-tee'
+        self.effect = 'Produces a clean, drinkable jet of water from the wand tip.'
+        self.damage = 0
+

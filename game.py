@@ -180,7 +180,7 @@ def action_adder():
 ###### GAME FUNCTIONALITY ######
 
 def main_game_loop():
-    while player.game_over == False:
+    while player.victory == False:
         room = world.tile_at(player.x, player.y)
         print(room.intro_text())
         prompt()
@@ -201,6 +201,7 @@ def setup_game():
 
     ### name collecting
     question_subject = "What was your favourite subject? \n"
+    question_subject_additional = "[Charms, DADA]. \n"
     for character in question_subject:
         sys.stdout.write(character)
         sys.stdout.flush()
@@ -210,7 +211,7 @@ def setup_game():
 
     ### Hogwarts House
     question_house = "What House do you belong to? \n"
-    question_house_additional = "You can be a Gryffindor, Slytherin, Hufflepuff or Ravenclaw. \n"
+    question_house_additional = "You can be a (G)ryffindor, (S)lytherin, (H)ufflepuff or (R)avenclaw. \n"
     for character in question_house:
         sys.stdout.write(character)
         sys.stdout.flush()

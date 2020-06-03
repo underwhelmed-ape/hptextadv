@@ -1,4 +1,5 @@
 from npc import Trader
+from enemies import FinalBoss
 from money_exchange import wizard_money
 
 
@@ -41,9 +42,25 @@ This is the crime scene.'''
 
 
 class SecretRoom(MapTile):
+    def __init__(self, x, y):
+        self.final_boss = FinalBoss()
+        self.spell_options = []
+
+
+
+    Pronunciation: an-tee-oh-kyoo-LAY-chee-ah 
+        super().__init__(x,y)
+
     def intro_text(self):
-        return '''
-Congratulations you have solved the crime'''
+        return f'''
+You have found the culprit. \n
+It is {final_boss.name}, a well known muggle baiter. \n
+But it looks like he won't come quietly!!\n'''
+
+    def fight(self, player):
+        print("WW: You'll have to defeat me in a wizard's duel.")
+        spell_options = []
+
 
 
 class PopupPotions(MapTile):
@@ -81,7 +98,7 @@ Your one stop shop for all your magical needs''')
     
     def swap(self, item, player):
         if item.value > player.inventory[2].value:
-            print(f"You only have {player.inventory[2].value} knuts")
+            print(f"You only have \n{player.inventory[2]}")
             return
         else:
             self.trader.inventory.remove(item)
