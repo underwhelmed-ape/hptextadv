@@ -42,16 +42,16 @@ class Player:
         self.y += dy
     
     def move_north(self):
-        self.move(0,-1)
+        self.move(dx=0, dy=-1)
 
     def move_south(self):
-        self.move(0,1)
+        self.move(dx=0, dy=1)
 
     def move_east(self):
-        self.move(-1,0)
+        self.move(dx=-1, dy=0)
 
     def move_west(self):
-        self.move(1,0)
+        self.move(dx=1, dy=0)
         
     def use_magic(self, tile):
         pass

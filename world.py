@@ -1,6 +1,7 @@
 from npc import Trader
 from enemies import FinalBoss
 from money_exchange import wizard_money
+from spells import Anteoculatia, AvadaKedavra, Expelliarmus, Aguamenti
 
 
 class MapTile:
@@ -11,6 +12,7 @@ class MapTile:
     def intro_text(self):
         raise NotImplementedError('Create a subclass instead')
 
+
 class StartTile(MapTile):
     def intro_text(self):
         return '''
@@ -19,9 +21,22 @@ This is where you work. \n'''
 
 
 class Fireplace(MapTile):
-    def intro_text(self):
-        return '''
-You can use Floo Powder here to get to Diagon Alley'''
+    def intro_text(self, player):
+        print()
+        return self.transport(player)
+
+    def transport(self, player):
+        print('This fireplace will take you to Diagon Alley \nWould you like to go? [y/n]')
+        user_decision = input('> ')
+        try:
+            if user_decision.lower() == 'n':
+                return
+            elif user_decision.lower() == 'y':
+                player.x = 2
+                player.y = 1
+        except:
+            print('Just say yes[y] or no[n]!!')
+            
 
 
 class DiagonAlleyBottom(MapTile):
@@ -46,9 +61,6 @@ class SecretRoom(MapTile):
         self.final_boss = FinalBoss()
         self.spell_options = []
 
-
-
-    Pronunciation: an-tee-oh-kyoo-LAY-chee-ah 
         super().__init__(x,y)
 
     def intro_text(self):
@@ -69,9 +81,10 @@ class PopupPotions(MapTile):
         super().__init__(x,y)
     
     def intro_text(self):
-        print('''Trader: \n
-Welcome to Pop-up Potions, \n
-Your one stop shop for all your magical needs''')
+        return '''Trader:
+    Welcome to Pop-up Potions,
+    Your one stop shop for all your magical needs.
+    How can I help you today?'''
 
     def trade(self, player):
         print(f'\nHere are my wares! \n')
@@ -124,21 +137,25 @@ world_map = [
     [None, StartTile(1,2), None, KnockturnAlley(3,2), SecretRoom(4,2)]
 ]
 
+# Locates a tile at a location
+# This returns the location in the world, when the player moves
 def tile_at(x, y):
     if x < 0 or y < 0:
         return None
     try:
         return world_map[y][x]
-    except:
+    except IndexError:
         return None
 
 
 if __name__ == "__main__":
-    from player import Player
+    #from player import Player
 
-    my_player = Player()
-    print(my_player.inventory[2]) #purse
+    print(tile_at(2,0))
 
-    shop = PopupPotions(1,2)
-    shop.intro_text()
-    shop.trade(my_player)
+    # my_player = Player()
+    # print(my_player.inventory[2]) #purse
+
+    # shop = PopupPotions(1,2)
+    # shop.intro_text()
+    # shop.trade(my_player)
