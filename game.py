@@ -16,7 +16,6 @@ import world
 screen_width = 100
 
 #initilise the player
-
 player = Player()
 
 ###### Title Screen ######
@@ -35,7 +34,6 @@ def title_screen():
     print('')
     print('        -Created by Underwhelmed Ape-        ')
     title_screen_selections()
-
 
 def help_menu():
     print('##############################################')
@@ -67,7 +65,6 @@ def about_menu():
     print('- Good luck in the adventure...')
     title_screen_selections()
 
-
 def title_screen_selections():
     option = input("> ")
     if option.lower() in ['play', 'p']:
@@ -91,16 +88,8 @@ def title_screen_selections():
             sys.exit()
 
 
-
 ###### GAME INTERACTIVITY ######
-# handle printing locations, moving, examining, puzzles, triggered-events etc
-
-#show current location
-# def print_location():
-#     print('\n' + ('#' * (4 + len(player.location)))) # add to new lines
-#     print('# ' + player.location.upper() + ' #')
-#     print('# ' + zonemap[player.location][DESCRIPTION] + ' #')
-#     print('\n' + ('#' * (4 + len(player.location))))
+# handle moving, examining, puzzles, triggered-events etc
 
 def prompt(): # where we will promt player to do everything, can add fighting etc
     print('\n' + '===============================')
@@ -119,31 +108,26 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['inventory', 'inv', 'i']:
         player.print_inventory()
 
-
 def player_move(myAction):
     ask = "Where would you like to go?\n"
     dest = input(ask)
     if dest in ['up', 'north', 'n', 'N']:
         player.move_north()
-        #destination = zonemap[player.location][UP] # accessing where going to move to
-        movement_handler()
+        #movement_handler()
     if dest in ['down', 'south', 's', 'S']:
         player.move_south()
-        #destination = zonemap[player.location][DOWN] # accessing where going to move to
-        movement_handler()
+        #movement_handler()
     if dest in ['left', 'west', 'w', 'W']:
         player.move_west()
-        #destination = zonemap[player.location][LEFT] # accessing where going to move to
-        movement_handler()
+        #movement_handler()
     if dest in ['right', 'east', 'e', 'E']:
         player.move_east()
-        #destination = zonemap[player.location][RIGHT] # accessing where going to move to
-        movement_handler()
+        #movement_handler()
 
-def movement_handler():
-    X = player.x
-    Y = player.y
-    print(f'\nYou have moved to {world.tile_at(X, Y)}.')
+# def movement_handler():
+#     X = player.x
+#     Y = player.y
+#     print(f'\nYou have moved to {world.tile_at(X, Y)}.')
     #player.location = destination
     #print_location()
 
@@ -153,28 +137,6 @@ def player_examine(action):
         print("You have already completed this job")
     else:
         print("trigger puzzle here")
-
-## LIMITING ACTIONS
-
-
-
-def get_available_actions(room, player):
-    actions = OrderedDict()
-    print('Choose an action: ')
-
-    if player.inventory:
-        action_adder(actions, 'i', player.print_inventory, 'Print Inventory')
-
-
-
-
-
-def action_adder():
-        actions['i'] = player.print_inventory
-        actions['I'] = player.print_inventory
-        actions['inventory'] = player.print_inventory
-        actions['inv'] = player.print_inventory
-        print('i: View Inventory')
 
 
 ###### GAME FUNCTIONALITY ######
