@@ -15,8 +15,24 @@ import world
 
 screen_width = 100
 
-#initilise the player
 player = Player()
+
+###### GAME FUNCTIONALITY ######
+
+def play():
+
+    title_screen()
+
+    setup_game()
+
+
+    while player.victory == False:
+        room = world.tile_at(player.x, player.y)
+        print(room.intro_text())
+        prompt()
+        #here handle if puzzles have been solved, boss defeated etc
+        # keeps game promting until game is completed
+
 
 ###### Title Screen ######
 # will allow player to select menu options
@@ -24,7 +40,7 @@ player = Player()
 def title_screen():
     os.system('clear')
     print('##############################################')
-    print('######## Harry Potter Text Adventure #########') # placeholder game name
+    print('######## Harry Potter Text Adventure #########')
     print('##############################################')
     print('')
     print('                  -  PLAY  -                  ')
@@ -36,6 +52,7 @@ def title_screen():
     title_screen_selections()
 
 def help_menu():
+    os.system('clear')
     print('##############################################')
     print('################# Help Menu ##################')
     print('##############################################')
@@ -51,6 +68,7 @@ def help_menu():
     title_screen_selections()
 
 def about_menu():
+    os.system('clear')
     print('##############################################')
     print('################# About Menu #################')
     print('##############################################')
@@ -68,7 +86,7 @@ def about_menu():
 def title_screen_selections():
     option = input("> ")
     if option.lower() in ['play', 'p']:
-        setup_game()
+        return
     elif option.lower() in ['help', 'h']:
         help_menu()
     elif option.lower() in ['about', 'a']:
@@ -79,7 +97,7 @@ def title_screen_selections():
         print("Please enter a valid command.")
         option = input("> ")
         if option.lower() in ['play', 'p']:
-            setup_game()
+            return
         elif option.lower() in ['help', 'h']:
             help_menu()
         elif option.lower() in ['about', 'a']:
@@ -139,15 +157,6 @@ def player_examine(action):
         print("trigger puzzle here")
 
 
-###### GAME FUNCTIONALITY ######
-
-def main_game_loop():
-    while player.victory == False:
-        room = world.tile_at(player.x, player.y)
-        print(room.intro_text())
-        prompt()
-        #here handle if puzzles have been solved, boss defeated etc
-        # keeps game promting until game is completed
 
 def setup_game():
     os.system('clear')
@@ -161,15 +170,15 @@ def setup_game():
     player_name = input("> ").strip()
     player.name = player_name
 
-    ### name collecting
-    question_subject = "What was your favourite subject? \n"
-    question_subject_additional = "[Charms, DADA]. \n"
-    for character in question_subject:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    player_subject = input("> ").strip()
-    player.subject = player_name
+    ### subject collecting
+    # question_subject = "What was your favourite subject? \n"
+    # question_subject_additional = "[Charms, DADA]. \n"
+    # for character in question_subject:
+    #     sys.stdout.write(character)
+    #     sys.stdout.flush()
+    #     time.sleep(0.05)
+    # player_subject = input("> ").strip()
+    # player.subject = player_subject
 
     ### Hogwarts House
     question_house = "What House do you belong to? \n"
@@ -193,70 +202,63 @@ def setup_game():
         if player_house.lower() in ['h', 'hufflepuff']:
             player.house = 'Hufflepuff'    
         if player_house.lower() in ['r', 'ravenclaw']:
-            player.house = 'Ravenclaw'    
-
-        print("You are now a " + player.house + "! \n")
+            player.house = 'Ravenclaw'
     else:
         while player_house.lower() not in valid_houses:
             print("Please select a valid House for this adventure!")
             player_house = input("> ").strip()
         if player_house.lower() in valid_houses:
-            player.house = player_house
-            print("You are now a " + player.house + "! \n")
+            if player_house.lower() in ['g', 'gryffindor']:
+                player.house = 'Gryffindor'
+            if player_house.lower() in ['s', 'slytherin']:
+                player.house = 'Slytherin'    
+            if player_house.lower() in ['h', 'hufflepuff']:
+                player.house = 'Hufflepuff'    
+            if player_house.lower() in ['r', 'ravenclaw']:
+                player.house = 'Ravenclaw'
+            
 
-        ###### Player stats #######
+    ###### Player stats #######
+    #can merge with above
 
-        if player.house == 'Gryffindor':
-            self.hp = 100 # hitpoints - int
-            self.mp = 100 # magic strength - int
-        elif player.house == 'Slytherin':
-            self.hp = 100
-            self.mp = 120
-        elif player.house == 'Hufflepuff':
-            self.hp = 100
-            self.mp = 60
-        elif player.house == 'Ravenclaw':
-            self.hp = 100
-            self.mp = 60
+    if player.house == 'Gryffindor':
+        player.hp = 100 # hitpoints - int
+        player.mp = 100 # magic strength - int
+        player.mp = 100 # magic strength - int
+        player.house_description = 'Nerve and Bravery'
+    elif player.house == 'Slytherin':
+        player.hp = 100
+        player.mp = 120
+        player.house_description = 'Cunning and Ambition'
+    elif player.house == 'Hufflepuff':
+        player.hp = 100
+        player.mp = 60
+        player.house_description = 'Hard Work and loyalty'
+    elif player.house == 'Ravenclaw':
+        player.hp = 100
+        player.mp = 60
+        player.house_description = 'Wisdom and Wit'
 
     ### Introduction
-    question3 = f'Welcome {player.name} from {player.house} to the Ministry of Magic. \n' 
 
-    for character in question3:
+
+    
+    print("####################################")
+    print("#       Let's begin the game       #")
+    print("####################################")
+    
+
+
+    welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
+We welcome people from all houses here. 
+As a {player.house}, you value {player.house_description}.'''
+
+
+    for character in welcome_statement:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.05)
-    player.name = input("> ").strip()
+        time.sleep(0.2)
+   
 
-# amending types of speech
-# gets more ominous as time gets longer
+play()
 
-    # speech1 = "Welcome to the magical world! \n"
-    # speech2 = "I hope it finds you well \n"
-    # speech3 = "Don't get too lost \n"
-    # speech4 = "hehehe... \n"
-    # for character in speech1:
-    #     sys.stdout.write(character)
-    #     sys.stdout.flush()
-    #     time.sleep(0.03)
-    # for character in speech2:
-    #     sys.stdout.write(character)
-    #     sys.stdout.flush()
-    #     time.sleep(0.03)
-    # for character in speech3:
-    #     sys.stdout.write(character)
-    #     sys.stdout.flush()
-    #     time.sleep(0.1)
-    # for character in speech4:
-    #     sys.stdout.write(character)
-    #     sys.stdout.flush()
-    #     time.sleep(0.2)
-
-    os.system('clear')
-    print("###################################")
-    print("#        Let's start now          #")
-    print("###################################")
-
-    main_game_loop()
-
-title_screen()

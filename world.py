@@ -8,6 +8,7 @@ class MapTile:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.times_visited = 0
 
     def intro_text(self):
         raise NotImplementedError('Create a subclass instead')
@@ -16,8 +17,8 @@ class MapTile:
 class StartTile(MapTile):
     def intro_text(self):
         return '''
-Welcome to the Ministry of Magic. \n
-This is where you work. \n'''
+You are in the Ministry of Magic.
+There is a grand fireplace in front of you'''
 
 
 class Fireplace(MapTile):

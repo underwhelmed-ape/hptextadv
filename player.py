@@ -15,6 +15,7 @@ class Player:
                           Purse(493 * 2)]
         self.name = ''
         self.house = ''
+        self.house_description = ''
         self.subject = ''
         self.hp = 0
         self.mp = 0
