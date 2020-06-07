@@ -4,10 +4,12 @@ from money_exchange import wizard_money
 from spells import Anteoculatia, AvadaKedavra, Expelliarmus, Aguamenti
 
 
+
 class MapTile:
-    def __init__(self, x, y):
+    def __init__(self, x, y, player):
         self.x = x
         self.y = y
+        self.player = player
         self.times_visited = 0
 
     def intro_text(self):
@@ -24,9 +26,9 @@ There is a grand fireplace in front of you'''
 class Fireplace(MapTile):
     def intro_text(self, player):
         print()
-        return self.transport(player)
+        return self.transport()
 
-    def transport(self, player):
+    def transport(self):
         print('This fireplace will take you to Diagon Alley \nWould you like to go? [y/n]')
         user_decision = input('> ')
         try:
@@ -64,7 +66,7 @@ class SecretRoom(MapTile):
 
         super().__init__(x,y)
 
-    def intro_text(self):
+    def intro_text(self): 
         return f'''
 You have found the culprit. \n
 It is {final_boss.name}, a well known muggle baiter. \n
@@ -77,9 +79,9 @@ But it looks like he won't come quietly!!\n'''
 
 
 class PopupPotions(MapTile):
-    def __init__(self, x, y):
+    def __init__(self, x, y, player):
         self.trader = Trader()
-        super().__init__(x,y)
+        super().__init__(x, y, player)
     
     def intro_text(self):
         return '''Trader:
@@ -132,19 +134,21 @@ class PopupPotions(MapTile):
 #  01 | 11 | 21 | 31 |
 #  02 | 12 | 22 | 32 | 42 |
 
-world_map = [
-    [None, None, PopupPotions(2,0), None, None],
-    [None, Fireplace(1,1), DiagonAlleyTop(2,1), DiagonAlleyBottom(3,1), None],
-    [None, StartTile(1,2), None, KnockturnAlley(3,2), SecretRoom(4,2)]
-]
+def world_map(player):
+    return [
+        [None, None, PopupPotions(2,0,player), None, None],
+        [None, Fireplace(1,1,player), DiagonAlleyTop(2,1,player), DiagonAlleyBottom(3,1, player), None],
+        [None, StartTile(1,2,player), None, KnockturnAlley(3,2,player), SecretRoom(4,2,player)]
+    ]
 
 # Locates a tile at a location
 # This returns the location in the world, when the player moves
-def tile_at(x, y):
+def tile_at(world_map, x, y):
     if x < 0 or y < 0:
         return None
     try:
-        return world_map[y][x]
+        map = world_map()
+        return map[y][x]
     except IndexError:
         return None
 

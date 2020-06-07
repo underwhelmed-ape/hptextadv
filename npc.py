@@ -24,3 +24,8 @@ class Trader(NonPlayableCharacter):
             consumables.BasicHealingPotion(),
             items.Sneakoscope(),
             items.BasicPotionsKit()]
+
+
+class Perkins(NonPlayableCharacter):
+    def __init__(self):
+        self.name = "Perkins"

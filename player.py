@@ -26,6 +26,15 @@ class Player:
 
     def is_alive(self):
         return self.hp > 0 # if >0, will return True, else False
+    
+    def player_stats(self):
+        print(f'\nPlayer stats for {self.name}'.upper())
+        print(f'\nNAME: {self.name}')
+        print(f'\nHOUSE: {self.house}')
+        print(f'\nHEALTH POINTS: {self.hp}')
+        print(f'\nMAGIC STRENGTH: {self.mp}\n')
+    
+
 
     def print_inventory(self):
         print("Inventory: ")

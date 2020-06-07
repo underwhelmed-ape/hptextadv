@@ -17,6 +17,8 @@ screen_width = 100
 
 player = Player()
 
+
+
 ###### GAME FUNCTIONALITY ######
 
 def play():
@@ -27,7 +29,7 @@ def play():
 
 
     while player.victory == False:
-        room = world.tile_at(player.x, player.y)
+        room = world.tile_at(player)[player.y, player.x]
         print(room.intro_text())
         prompt()
         #here handle if puzzles have been solved, boss defeated etc
@@ -150,6 +152,7 @@ def player_move(myAction):
     #print_location()
 
 
+
 def player_examine(action):
     if zonemap[player.location][SOLVED] == True:
         print("You have already completed this job")
@@ -248,17 +251,46 @@ def setup_game():
     print("####################################")
     
 
+'''
+Welcome {player.name} to your first day, here at the Ministry of Magic. 
+We have assigned you to the Department of Magical Law Enforcement. 
+Specifically, the Misuse of Muggle Artifacts Office. I'll leave you with Perkins, 
+he will be able to tell you what you will be doing for your first job here. 
+
+Perkins:
+1. Initial conversation with Perkins - mandatory
+Hi {player.name}, we've been have a lot of trouble lately with a series of muggle baiting attacks. 
+We need your help catching this individual before they do permanent damage. 
+
+We've just had a call about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
+We need you to stop this and see what you can find in the area.
+
+2. If player talk to Perkins before solving puzzle
+Well, what are you waiting for? You need to find Knockturn alley and find a way to stop the teapot before it hurts any Witches or Wizards.  
+
+3. After solving first puzzle.
+Well done. I got the owl saying you had fixed the enchanted item. 
+A teapot this time? This sounds like the guy we are chasing. Maybe he was selling it before he was disturbed.
+You should have a look around the area and see what clues you can find. He can't have gotten far!
+If you need any items to help you on the mission, you can probably find them in Diagon Alley. 
+The Ministry of Magic will reinburse you of course.  
+
+4. If talk again: 
+You should have a look around the area and see what clues you can find. He can't have gotten far!
+If you need any items to help you on the mission, you can probably find them in Diagon Alley. 
+The Ministry of Magic will reinburse you of course. If you submit your expenses in time that is!
+'''
 
     welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
 We welcome people from all houses here. 
-As a {player.house}, you value {player.house_description}.'''
-
-
+As a {player.house}, you value {player.house_description}\n.'''
+    
     for character in welcome_statement:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.2)
+        time.sleep(0.05)
    
+    player.player_stats()
 
 play()
 
