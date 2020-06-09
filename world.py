@@ -1,4 +1,4 @@
-from npc import Trader
+from npc import Trader, Perkins
 from enemies import FinalBoss
 from money_exchange import wizard_money
 from spells import Anteoculatia, AvadaKedavra, Expelliarmus, Aguamenti
@@ -15,12 +15,29 @@ class MapTile:
     def intro_text(self):
         raise NotImplementedError('Create a subclass instead')
 
+    def examine(self):
+        raise NotImplementedError('Create a subclass instead')
+
+
+
 
 class StartTile(MapTile):
+    def __init__(self, x, y, player):
+        self.perkins = Perkins()
+        
+    
     def intro_text(self):
         return '''
 You are in the Ministry of Magic.
 There is a grand fireplace in front of you'''
+
+    def examine(self):
+        return f'''
+Hi {player.name}, we've been have a lot of trouble lately with a series of muggle baiting attacks. 
+We need your help catching this individual before they do permanent damage. 
+
+We've just had a call about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
+We need you to stop this and see what you can find in the area.'''
 
 
 class Fireplace(MapTile):
@@ -54,17 +71,13 @@ This is the top end of Diagon Alley. \n'''
 
 
 class KnockturnAlley(MapTile):
+
     def intro_text(self):
         return '''
 This is the crime scene.'''
 
 
 class SecretRoom(MapTile):
-    def __init__(self, x, y):
-        self.final_boss = FinalBoss()
-        self.spell_options = []
-
-        super().__init__(x,y)
 
     def intro_text(self): 
         return f'''
@@ -134,23 +147,23 @@ class PopupPotions(MapTile):
 #  01 | 11 | 21 | 31 |
 #  02 | 12 | 22 | 32 | 42 |
 
-def world_map(player):
-    return [
-        [None, None, PopupPotions(2,0,player), None, None],
-        [None, Fireplace(1,1,player), DiagonAlleyTop(2,1,player), DiagonAlleyBottom(3,1, player), None],
-        [None, StartTile(1,2,player), None, KnockturnAlley(3,2,player), SecretRoom(4,2,player)]
-    ]
+# def world_map(player):
+#     return [
+#         [None, None, PopupPotions(2,0,player), None, None],
+#         [None, Fireplace(1,1,player), DiagonAlleyTop(2,1,player), DiagonAlleyBottom(3,1, player), None],
+#         [None, StartTile(1,2,player), None, KnockturnAlley(3,2,player), SecretRoom(4,2,player)]
+#     ]
 
 # Locates a tile at a location
 # This returns the location in the world, when the player moves
-def tile_at(world_map, x, y):
-    if x < 0 or y < 0:
-        return None
-    try:
-        map = world_map()
-        return map[y][x]
-    except IndexError:
-        return None
+# def tile_at(world_map, player, x, y):
+#     if x < 0 or y < 0:
+#         return None
+#     try:
+#         map = world_map(player)
+#         return map[y][x]
+#     except IndexError:
+#         return None
 
 
 if __name__ == "__main__":

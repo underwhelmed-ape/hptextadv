@@ -17,7 +17,22 @@ screen_width = 100
 
 player = Player()
 
+## MAP ##
 
+world_map = [
+    [None, None, world.PopupPotions(2,0,player), None, None],
+    [None, world.Fireplace(1,1,player), world.DiagonAlleyTop(2,1,player), world.DiagonAlleyBottom(3,1, player), None],
+    [None, world.StartTile(1,2,player), None, world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)]
+]
+
+def tile_at(world_map, x, y):
+    if x < 0 or y < 0:
+        return None
+    try:
+        map = world_map[y][x]
+        return map
+    except IndexError:
+        return None
 
 ###### GAME FUNCTIONALITY ######
 
@@ -29,7 +44,7 @@ def play():
 
 
     while player.victory == False:
-        room = world.tile_at(player)[player.y, player.x]
+        room = tile_at(world_map, player.x, player.y)
         print(room.intro_text())
         prompt()
         #here handle if puzzles have been solved, boss defeated etc
@@ -124,7 +139,7 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
         player_move(action.lower())
     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
-        player_examine(action.lower())
+        room.examine(action.lower())
     elif action.lower() in ['inventory', 'inv', 'i']:
         player.print_inventory()
 
@@ -153,8 +168,8 @@ def player_move(myAction):
 
 
 
-def player_examine(action):
-    if zonemap[player.location][SOLVED] == True:
+def player_examine():
+    if room[player.location][SOLVED] == True:
         print("You have already completed this job")
     else:
         print("trigger puzzle here")
@@ -251,6 +266,20 @@ def setup_game():
     print("####################################")
     
 
+    welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
+We welcome people from all houses here. 
+As a {player.house}, you value {player.house_description}\n.'''
+    
+    for character in welcome_statement:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
+   
+    player.player_stats()
+
+play()
+
+
 '''
 Welcome {player.name} to your first day, here at the Ministry of Magic. 
 We have assigned you to the Department of Magical Law Enforcement. 
@@ -280,17 +309,3 @@ You should have a look around the area and see what clues you can find. He can't
 If you need any items to help you on the mission, you can probably find them in Diagon Alley. 
 The Ministry of Magic will reinburse you of course. If you submit your expenses in time that is!
 '''
-
-    welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
-We welcome people from all houses here. 
-As a {player.house}, you value {player.house_description}\n.'''
-    
-    for character in welcome_statement:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-   
-    player.player_stats()
-
-play()
-

@@ -63,9 +63,9 @@ class Player:
     def move_west(self):
         self.move(dx=1, dy=0)
         
-    def use_magic(self, tile):
+    def examine(self):
         pass
-        
+
 
 if __name__ == "__main__":
     from player import Player
