@@ -28,11 +28,11 @@ class Player:
         return self.hp > 0 # if >0, will return True, else False
     
     def player_stats(self):
-        print(f'\nPlayer stats for {self.name}'.upper())
-        print(f'\nNAME: {self.name}')
-        print(f'\nHOUSE: {self.house}')
-        print(f'\nHEALTH POINTS: {self.hp}')
-        print(f'\nMAGIC STRENGTH: {self.mp}\n')
+        print('\nPLAYER STATS')
+        print(f'NAME: {self.name}')
+        print(f'HOUSE: {self.house}')
+        print(f'HEALTH POINTS: {self.hp}')
+        #print(f'MAGIC STRENGTH: {self.mp}\n')
     
 
 
@@ -58,10 +58,10 @@ class Player:
         self.move(dx=0, dy=1)
 
     def move_east(self):
-        self.move(dx=-1, dy=0)
+        self.move(dx=1, dy=0)
 
     def move_west(self):
-        self.move(dx=1, dy=0)
+        self.move(dx=-1, dy=0)
         
     def examine(self):
         pass

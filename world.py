@@ -29,7 +29,7 @@ class StartTile(MapTile):
     def intro_text(self):
         return '''
 You are in the Ministry of Magic.
-There is a grand fireplace in front of you'''
+It is a huge ornate corridor with a golden statue visible in the distance'''
 
     def examine(self):
         return f'''
@@ -41,9 +41,9 @@ We need you to stop this and see what you can find in the area.'''
 
 
 class Fireplace(MapTile):
-    def intro_text(self, player):
-        print()
-        return self.transport()
+    def intro_text(self):
+        return '''This is the Fireplace in the MOM. You can get DA from here'''
+        
 
     def transport(self):
         print('This fireplace will take you to Diagon Alley \nWould you like to go? [y/n]')
@@ -78,11 +78,13 @@ This is the crime scene.'''
 
 
 class SecretRoom(MapTile):
+    def __init__(self, x, y, player):
+        self.final_boss = FinalBoss()
 
     def intro_text(self): 
         return f'''
 You have found the culprit. \n
-It is {final_boss.name}, a well known muggle baiter. \n
+It is {self.final_boss.name}, a well known muggle baiter. \n
 But it looks like he won't come quietly!!\n'''
 
     def fight(self, player):
@@ -167,13 +169,10 @@ class PopupPotions(MapTile):
 
 
 if __name__ == "__main__":
-    #from player import Player
+    from player import Player
 
-    print(tile_at(2,0))
+    player = Player()
 
-    # my_player = Player()
-    # print(my_player.inventory[2]) #purse
+    room = SecretRoom(4,2,player)
+    print(room.intro_text())
 
-    # shop = PopupPotions(1,2)
-    # shop.intro_text()
-    # shop.trade(my_player)

@@ -29,8 +29,7 @@ def tile_at(world_map, x, y):
     if x < 0 or y < 0:
         return None
     try:
-        map = world_map[y][x]
-        return map
+        return world_map[y][x]
     except IndexError:
         return None
 
@@ -143,21 +142,50 @@ def prompt(): # where we will promt player to do everything, can add fighting et
     elif action.lower() in ['inventory', 'inv', 'i']:
         player.print_inventory()
 
+
 def player_move(myAction):
     ask = "Where would you like to go?\n"
     dest = input(ask)
     if dest in ['up', 'north', 'n', 'N']:
-        player.move_north()
-        #movement_handler()
-    if dest in ['down', 'south', 's', 'S']:
-        player.move_south()
-        #movement_handler()
-    if dest in ['left', 'west', 'w', 'W']:
-        player.move_west()
-        #movement_handler()
-    if dest in ['right', 'east', 'e', 'E']:
-        player.move_east()
-        #movement_handler()
+        new_room = tile_at(world_map, player.x, player.y - 1)
+        if new_room:
+            print('room is valid')
+            print(f'new room is: {new_room}')
+            player.move_north()
+        else:
+            print('room is not valid')
+            return
+
+    elif dest in ['down', 'south', 's', 'S']:
+        new_room = tile_at(world_map, player.x, player.y + 1)
+        if new_room:
+            print('room is valid')
+            print(f'new room is: {new_room}')
+            player.move_south()
+        else:
+            print('room is not valid')
+            return
+
+    elif dest in ['left', 'west', 'w', 'W']:
+        new_room = tile_at(world_map, player.x - 1, player.y)
+        if new_room:
+            print('room is valid')
+            print(f'new room is: {new_room}')
+            player.move_west()
+        else:
+            print('room is not valid')
+            return
+
+    elif dest in ['right', 'east', 'e', 'E']:
+        new_room = tile_at(world_map, player.x + 1, player.y)
+        if new_room:
+            print('room is valid')
+            print(f'new room is: {new_room}')
+            player.move_east()
+        else:
+            print('room is not valid')
+            return
+
 
 # def movement_handler():
 #     X = player.x
@@ -260,7 +288,7 @@ def setup_game():
     ### Introduction
 
 
-    
+    time.sleep(0.5)
     print("####################################")
     print("#       Let's begin the game       #")
     print("####################################")
@@ -268,7 +296,7 @@ def setup_game():
 
     welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
 We welcome people from all houses here. 
-As a {player.house}, you value {player.house_description}\n.'''
+As a {player.house}, you value {player.house_description}.\n'''
     
     for character in welcome_statement:
         sys.stdout.write(character)
