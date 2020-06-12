@@ -9,6 +9,8 @@ import time
 import random # generate pseudo-random numbers
 import math
 from collections import OrderedDict
+from functools import partial
+
 
 from player import Player
 import world
@@ -41,11 +43,11 @@ def play():
 
     setup_game()
 
-
     while player.victory == False:
         room = tile_at(world_map, player.x, player.y)
-        print(room.intro_text())
-        prompt()
+        print(room)
+        choose_action(room, player)
+        #prompt()
         #here handle if puzzles have been solved, boss defeated etc
         # keeps game promting until game is completed
 
@@ -143,7 +145,7 @@ def prompt(): # where we will promt player to do everything, can add fighting et
         player.print_inventory()
 
 
-def player_move(myAction):
+def player_move():
     ask = "Where would you like to go?\n"
     dest = input(ask)
     if dest in ['up', 'north', 'n', 'N']:
@@ -304,6 +306,45 @@ As a {player.house}, you value {player.house_description}.\n'''
         time.sleep(0.05)
    
     player.player_stats()
+
+def action_adder(action_dict, hotkey, action, name):
+    action_dict[hotkey.lower()] = action
+    action_dict[hotkey.upper()] = action
+    print(f'{hotkey}: {name}')
+
+def get_available_actions(room, player):
+    actions = OrderedDict()
+    print('choose your action: ')
+
+    action_adder(actions, 'quit', sys.exit, "Exit Game")
+    action_adder(actions, 'stats', player.player_stats, "Show player stats")
+    action_adder(actions, 'move', player_move, "Move")
+    if player.inventory:
+        action_adder(actions, 'i', player.print_inventory, "Prints player's inventory")
+    if isinstance(room, world.StartTile):
+        action_adder(actions, 'talk', partial(room.talk, player), "Talk to person in tile")
+    elif isinstance(room, world.Fireplace):
+        action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")
+        
+
+    return actions
+
+
+def choose_action(room, player):
+    ''' Prompt player to give action command'''
+    print('\n' + '=============================================')
+    print('What would like to do?')
+    action = None
+    while not action:
+        available_actions = get_available_actions(room, player)
+        action_input = input('\n> ')
+        action = available_actions.get(action_input)
+        if action:
+            print(action())
+        else:
+            print('Unknown action, please enter another.\n')
+
+
 
 play()
 

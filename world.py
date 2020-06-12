@@ -18,11 +18,15 @@ class MapTile:
     def examine(self):
         raise NotImplementedError('Create a subclass instead')
 
+    def __str__(self):
+         return self.name
+
 
 
 
 class StartTile(MapTile):
     def __init__(self, x, y, player):
+        self.name = 'Ministry of Magic Entrance Hall'
         self.perkins = Perkins()
         
     
@@ -31,32 +35,54 @@ class StartTile(MapTile):
 You are in the Ministry of Magic.
 It is a huge ornate corridor with a golden statue visible in the distance'''
 
-    def examine(self):
+    def talk(self, player):
         return f'''
+Perkins: 
 Hi {player.name}, we've been have a lot of trouble lately with a series of muggle baiting attacks. 
-We need your help catching this individual before they do permanent damage. 
+We need your help catching this individual before they do any more harm. 
 
-We've just had a call about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
+We've received an owl about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
 We need you to stop this and see what you can find in the area.'''
 
 
 class Fireplace(MapTile):
+    def __init__(self, x, y, player):
+        if player.x == 1 and player.y == 2:
+            self.name = 'Entrance Hall Fireplace'
+        if player.x == 2 and player.y == 1:
+            self.name = 'Diagon Alley Fireplace'
+
     def intro_text(self):
-        return '''This is the Fireplace in the MOM. You can get DA from here'''
+        return '''Fireplace Transport. All users must provide their own Floo Powder.'''
         
 
-    def transport(self):
-        print('This fireplace will take you to Diagon Alley \nWould you like to go? [y/n]')
-        user_decision = input('> ')
-        try:
-            if user_decision.lower() == 'n':
-                return
-            elif user_decision.lower() == 'y':
-                player.x = 2
-                player.y = 1
-        except:
-            print('Just say yes[y] or no[n]!!')
-            
+    def transport(self, player):
+        if self.name == 'Entrance Hall Fireplace':
+            print('This fireplace will take you to Diagon Alley \nWould you like to go? [y/n]')
+            user_decision = input('> ')
+            try:
+                if user_decision.lower() in ['no', 'n']:
+                    print('OK, nevermind')
+                    return
+                elif user_decision.lower() in ['yes', 'y']:
+                    player.x = 2
+                    player.y = 1
+                    print('Welcome to Diagon Alley')
+            except:
+                print('Just say yes[y] or no[n]!!')
+        
+        elif self.name == 'Entrance Hall Fireplace':
+            print('This fireplace will take you back to the Ministry of Magic. \nWould you like to go? [y/n]')
+            user_decision = input('> ')
+            try:
+                if user_decision.lower() in ['no', 'n']:
+                    return
+                elif user_decision.lower() in ['yes', 'y']:
+                    player.x = 1
+                    player.y = 2
+                    print('The familar tiled walls of the Ministry greet you as you return')
+            except:
+                print('Just say yes[y] or no[n]!!')
 
 
 class DiagonAlleyBottom(MapTile):
