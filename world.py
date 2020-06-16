@@ -209,7 +209,22 @@ class ClosedMapTile:
 
 class MinistryWall(ClosedMapTile):
     def description(self):
-        return 'This is a tiled wall, you cannot go any further'
+        return '''
+There is only a dour tiled wall in front of you, you cannot go any further'''
+
+class MinistryStatue(ClosedMapTile):
+    def description(self):
+        return '''
+You look down the corridor. 
+In the distance you can see a golden statue. 
+You cannot complete your job there. 
+You turn back'''
+
+class MinistryPerkins(ClosedMapTile):
+    def description(self):
+        return '''
+You just see Perkins in front of you.
+He is blocking the way forward'''
 
 
 if __name__ == "__main__":

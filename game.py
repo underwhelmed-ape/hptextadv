@@ -24,7 +24,7 @@ player = Player()
 world_map = [
     [None, None, world.PopupPotions(2,0,player), None, None],
     [None, world.Fireplace(1,1,player), world.DiagonAlleyTop(2,1,player), world.DiagonAlleyBottom(3,1, player), None],
-    [None, world.StartTile(1,2,player), None, world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)],
+    [world.MinistryStatue(0,2,player), world.StartTile(1,2,player), world.MinistryPerkins(2,2,player), world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)],
     [None, world.MinistryWall(1,3,player), None, None, None]
 ]
 
