@@ -24,7 +24,8 @@ player = Player()
 world_map = [
     [None, None, world.PopupPotions(2,0,player), None, None],
     [None, world.Fireplace(1,1,player), world.DiagonAlleyTop(2,1,player), world.DiagonAlleyBottom(3,1, player), None],
-    [None, world.StartTile(1,2,player), None, world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)]
+    [None, world.StartTile(1,2,player), None, world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)],
+    [None, world.MinistryWall(1,3,player), None, None, None]
 ]
 
 def tile_at(world_map, x, y):
@@ -45,11 +46,11 @@ def play():
 
     while player.victory == False:
         room = tile_at(world_map, player.x, player.y)
+        #if isinstance(room, MinistryWall):
         print(room)
         choose_action(room, player)
         #prompt()
-        #here handle if puzzles have been solved, boss defeated etc
-        # keeps game promting until game is completed
+
 
 
 ###### Title Screen ######
@@ -127,67 +128,72 @@ def title_screen_selections():
 ###### GAME INTERACTIVITY ######
 # handle moving, examining, puzzles, triggered-events etc
 
-def prompt(): # where we will promt player to do everything, can add fighting etc
-    print('\n' + '===============================')
-    print('What would like to do?')
-    action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine', 'inventory', 'inv', 'i']
-    while action.lower() not in acceptable_actions:
-        print("Unknown action, please try again. \n")
-        action = input("> ")
-    if action.lower() == 'quit':
-        sys.exit()
-    elif action.lower() in ['move', 'go', 'travel', 'walk']:
-        player_move(action.lower())
-    elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
-        room.examine(action.lower())
-    elif action.lower() in ['inventory', 'inv', 'i']:
-        player.print_inventory()
+# def prompt(): # where we will promt player to do everything, can add fighting etc
+#     print('\n' + '===============================')
+#     print('What would like to do?')
+#     action = input("> ")
+#     acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine', 'inventory', 'inv', 'i']
+#     while action.lower() not in acceptable_actions:
+#         print("Unknown action, please try again. \n")
+#         action = input("> ")
+#     if action.lower() == 'quit':
+#         sys.exit()
+#     elif action.lower() in ['move', 'go', 'travel', 'walk']:
+#         player_move(action.lower())
+#     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
+#         room.examine(action.lower())
+#     elif action.lower() in ['inventory', 'inv', 'i']:
+#         player.print_inventory()
 
 
 def player_move():
     ask = "Where would you like to go?\n"
     dest = input(ask)
+    print(f'current room is: {tile_at(world_map, player.x, player.y)}')
     if dest in ['up', 'north', 'n', 'N']:
         new_room = tile_at(world_map, player.x, player.y - 1)
-        if new_room:
-            print('room is valid')
+        if isinstance(new_room, world.MapTile):
+            print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_north()
-        else:
-            print('room is not valid')
+        elif isinstance(new_room, world.ClosedMapTile):
+            print('room is a ClosedMapTile')
+            print(new_room)
             return
 
     elif dest in ['down', 'south', 's', 'S']:
         new_room = tile_at(world_map, player.x, player.y + 1)
-        if new_room:
-            print('room is valid')
+        if isinstance(new_room, world.MapTile):
+            print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_south()
-        else:
-            print('room is not valid')
+        elif isinstance(new_room, world.ClosedMapTile):
+            print('room is a ClosedMapTile')
+            print(new_room)
             return
 
     elif dest in ['left', 'west', 'w', 'W']:
         new_room = tile_at(world_map, player.x - 1, player.y)
-        if new_room:
-            print('room is valid')
+        if isinstance(new_room, world.MapTile):
+            print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_west()
-        else:
-            print('room is not valid')
+        elif isinstance(new_room, world.ClosedMapTile):
+            print('room is a ClosedMapTile')
+            print(new_room)
             return
 
     elif dest in ['right', 'east', 'e', 'E']:
         new_room = tile_at(world_map, player.x + 1, player.y)
-        if new_room:
-            print('room is valid')
+        if isinstance(new_room, world.MapTile):
+            print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_east()
-        else:
-            print('room is not valid')
+        elif isinstance(new_room, world.ClosedMapTile):
+            print('room is a ClosedMapTile')
+            print(new_room)
             return
-
+    print(f'new current room is: {tile_at(world_map, player.x, player.y)}')
 
 # def movement_handler():
 #     X = player.x
@@ -324,8 +330,11 @@ def get_available_actions(room, player):
     if isinstance(room, world.StartTile):
         action_adder(actions, 'talk', partial(room.talk, player), "Talk to person in tile")
     elif isinstance(room, world.Fireplace):
-        action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")
-        
+        action_adder(actions, 'look', partial(room.transport, player), "Examine your location")
+    elif isinstance(room, world.DiagonAlleyTop):
+        action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")    
+    elif isinstance(room, world.DiagonAlleyBottom):
+        action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")    
 
     return actions
 

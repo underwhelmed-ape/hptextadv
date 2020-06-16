@@ -194,6 +194,24 @@ class PopupPotions(MapTile):
 #         return None
 
 
+class ClosedMapTile:
+    def __init__(self, x, y, player):
+        self.x = x
+        self.y = y
+        self.player = player
+    
+    def description(self):
+        return None
+
+    def __str__(self):
+         return self.description()
+
+
+class MinistryWall(ClosedMapTile):
+    def description(self):
+        return 'This is a tiled wall, you cannot go any further'
+
+
 if __name__ == "__main__":
     from player import Player
 
