@@ -21,6 +21,17 @@ player = Player()
 
 ## MAP ##
 
+# CREATING THE WORLD MAP
+
+# xxxx|xxxx|.pot|shop|
+#     |fire|DA-1|DA-2|
+# Stat|Home|Perk|KTA |Vict|
+# xxxx|Wall|xxxx|xxxx|xxxx|
+
+#  00 | 10 | 20 | 30 |
+#  01 | 11 | 21 | 31 |
+#  02 | 12 | 22 | 32 | 42 |
+#  03 | 13 | 23 | 33 | 43 |
 world_map = [
     [None, None, world.PopupPotions(2,0,player), None, None],
     [None, world.Fireplace(1,1,player), world.DiagonAlleyTop(2,1,player), world.DiagonAlleyBottom(3,1, player), None],
@@ -126,25 +137,6 @@ def title_screen_selections():
 
 
 ###### GAME INTERACTIVITY ######
-# handle moving, examining, puzzles, triggered-events etc
-
-# def prompt(): # where we will promt player to do everything, can add fighting etc
-#     print('\n' + '===============================')
-#     print('What would like to do?')
-#     action = input("> ")
-#     acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',  'inspect', 'interact', 'look', 'examine', 'inventory', 'inv', 'i']
-#     while action.lower() not in acceptable_actions:
-#         print("Unknown action, please try again. \n")
-#         action = input("> ")
-#     if action.lower() == 'quit':
-#         sys.exit()
-#     elif action.lower() in ['move', 'go', 'travel', 'walk']:
-#         player_move(action.lower())
-#     elif action.lower() in ['inspect', 'interact', 'look', 'examine']:
-#         room.examine(action.lower())
-#     elif action.lower() in ['inventory', 'inv', 'i']:
-#         player.print_inventory()
-
 
 def player_move():
     ask = "Where would you like to go?\n"

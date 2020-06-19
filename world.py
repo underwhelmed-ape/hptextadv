@@ -165,34 +165,6 @@ class PopupPotions(MapTile):
             for i, item in enumerate(self.trader.inventory, 1):
                 print(f'{i}. {item.name}: \n{wizard_money(item.value)}')
 
-# CREATING THE WORLD MAP
-
-# xxxx|xxxx|.pot|shop|
-#     |fire|DA-1|DA-2|
-# xxxx|Home|xxxx|KTA |Vict|
-
-#  00 | 10 | 20 | 30 |
-#  01 | 11 | 21 | 31 |
-#  02 | 12 | 22 | 32 | 42 |
-
-# def world_map(player):
-#     return [
-#         [None, None, PopupPotions(2,0,player), None, None],
-#         [None, Fireplace(1,1,player), DiagonAlleyTop(2,1,player), DiagonAlleyBottom(3,1, player), None],
-#         [None, StartTile(1,2,player), None, KnockturnAlley(3,2,player), SecretRoom(4,2,player)]
-#     ]
-
-# Locates a tile at a location
-# This returns the location in the world, when the player moves
-# def tile_at(world_map, player, x, y):
-#     if x < 0 or y < 0:
-#         return None
-#     try:
-#         map = world_map(player)
-#         return map[y][x]
-#     except IndexError:
-#         return None
-
 
 class ClosedMapTile:
     def __init__(self, x, y, player):
