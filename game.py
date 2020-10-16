@@ -87,8 +87,9 @@ def help_menu():
     print('################# Help Menu ##################')
     print('##############################################')
     print('')
-    print('- Type "up", "down", "left", "right" to move')
+    print('- Type "up", "down", "left", "right" when moving')
     print('- Use "look" to inspect something')
+    print('- Use "talk" to interact with people')
     print('- Type "i" to view inventory')
     print('')
     print('                  -  PLAY  -                  ')
@@ -102,9 +103,13 @@ def about_menu():
     print('##############################################')
     print('################# About Menu #################')
     print('##############################################')
-    print('This is the about screen')
-    print('This will be filled in later')
+    print('This is a text adventure game based in the')
+    print('Harry Potter universe')
     print('')
+    print('A young worker in the Ministry of Magic finds')
+    print('themselves at the heart of an investigation')
+    print('')
+    print('Explore the Magical world and solve the mystery')
     print('')
     print('')
     print('                  -  PLAY  -                  ')
@@ -277,7 +282,7 @@ def setup_game():
         player.mp = 120
         player.house_description = 'Cunning and Ambition'
     elif player.house == 'Hufflepuff':
-        player.hp = 100
+        player.hp = 120
         player.mp = 60
         player.house_description = 'Hard Work and loyalty'
     elif player.house == 'Ravenclaw':
