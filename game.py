@@ -207,42 +207,29 @@ def player_examine():
     else:
         print("trigger puzzle here")
 
-
+def narrate(phrase):
+    for character in phrase:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.05)
 
 def setup_game():
     os.system('clear')
 
-    ### name collecting
+    ### get player's name
     question_name = "Hello, what's your name? \n"
-    for character in question_name:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+    narrate(question_name)
     player_name = input("> ").strip()
     player.name = player_name
+    os.system('clear')
 
-    ### subject collecting
-    # question_subject = "What was your favourite subject? \n"
-    # question_subject_additional = "[Charms, DADA]. \n"
-    # for character in question_subject:
-    #     sys.stdout.write(character)
-    #     sys.stdout.flush()
-    #     time.sleep(0.05)
-    # player_subject = input("> ").strip()
-    # player.subject = player_subject
+    ### get player's house
+    question_house = "Select your House \nAre you a (G)ryffindor, (S)lytherin, (H)ufflepuff or (R)avenclaw? \n"
+    narrate(question_house)
 
-    ### Hogwarts House
-    question_house = "What House do you belong to? \n"
-    question_house_additional = "You can be a (G)ryffindor, (S)lytherin, (H)ufflepuff or (R)avenclaw. \n"
-    for character in question_house:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    for character in question_house_additional:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.005)
+    
     player_house = input("> ").strip()
+    os.system('clear')
     valid_houses = ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw', 'g', 's', 'h', 'r']
     if player_house.lower() in valid_houses:
 
@@ -299,15 +286,33 @@ def setup_game():
     print("####################################")
     
 
-    welcome_statement = f'''Welcome {player.name} to the Ministry of Magic.
-We welcome people from all houses here. 
-As a {player.house}, you value {player.house_description}.\n'''
+    welcome_statement_1 = '''The path in front of you has been blocked. 
+You peer at the brick wall, it is aging and lightly discoloured, but is otherwise unremarkable from
+the surrounding London townhouses.
+But you have passed through many times and know the secrets beyond.
+
+Tap the brick with your Wand.\n
+'''
     
-    for character in welcome_statement:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-   
+    narrate(welcome_statement_1)
+    brick_options = ['(1) Three up and two across', '(2) One up and four across']
+    for option in brick_options:
+        print(option)
+    brick_answer = input('> ')
+    while brick_answer != '1':
+        narrate('Not quite. Have you forgotten already?\n')
+        brick_answer = input('> ')
+    
+    os.system('clear')
+    time.sleep(1)
+    welcome_statement_2 = f'''Welcome {player.name} to the Wizarding World.
+
+        "Let us step into the night and pursue that flighty temptress...
+        adventure" - Albus Dumbledore
+    
+    '''
+    narrate(welcome_statement_2)
+    
     player.player_stats()
 
 def action_adder(action_dict, hotkey, action, name):

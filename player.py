@@ -28,11 +28,13 @@ class Player:
         return self.hp > 0 # if >0, will return True, else False
     
     def player_stats(self):
+        chars = 50
         print('\nPLAYER STATS')
+        print('')
         print(f'NAME: {self.name}')
         print(f'HOUSE: {self.house}')
         print(f'HEALTH POINTS: {self.hp}')
-        #print(f'MAGIC STRENGTH: {self.mp}\n')
+        print(f'MAGICAL STRENGTH: {self.mp}\n')
     
 
 
