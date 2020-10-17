@@ -61,15 +61,14 @@ def about_menu():
 
 def title_screen_selections():
     option = input("> ")
-    while option not in ['play', 'p', 'help', 'h', 'about', 'a', 'quit', 'q']:
+    if option.lower() in ['play', 'p']:
+        return
+    elif option.lower() in ['help', 'h']:
+        help_menu()
+    elif option.lower() in ['about', 'a']:
+        about_menu()
+    elif option.lower() in ['quit', 'q']:
+        sys.exit()
+    else:
         print("Please enter a valid command.")
-        option = input("> ")
-        if option.lower() in ['play', 'p']:
-            continue
-        elif option.lower() in ['help', 'h']:
-            help_menu()
-        elif option.lower() in ['about', 'a']:
-            about_menu()
-        elif option.lower() in ['quit', 'q']:
-            sys.exit()
-
+        title_screen_selections()

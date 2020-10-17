@@ -1,16 +1,20 @@
-def setup_game():
+import os
+from game_visuals import narrate
+import time
+
+def setup_game(player):
     os.system('clear')
 
     ### get player's name
     question_name = "Hello, what's your name? \n"
-    narrate(question_name)
+    narrate(question_name, 0.05)
     player_name = input("> ").strip()
     player.name = player_name
     os.system('clear')
 
     ### get player's house
     question_house = "Select your House \nAre you a (G)ryffindor, (S)lytherin, (H)ufflepuff or (R)avenclaw? \n"
-    narrate(question_house)
+    narrate(question_house, 0.05)
 
     
     player_house = input("> ").strip()
@@ -71,18 +75,18 @@ def setup_game():
     welcome_statement_1 = '''The path in front of you has been blocked. 
 You peer at the brick wall, it is aging and lightly discoloured, but is otherwise 
 unremarkable from the surrounding London townhouses.
-You have been to Diagon Alley many times though.
+You have been through here many times though.
 
-Tap the brick with your Wand.\n
+Tap the correct brick with your wand to enter Diagon Alley.\n
 '''
     
-    narrate(welcome_statement_1)
+    narrate(welcome_statement_1, 0.05)
     brick_options = ['(1) Three up and two across', '(2) One up and four across']
     for option in brick_options:
         print(option)
     brick_answer = input('> ')
     while brick_answer != '1':
-        narrate('Not quite. Have you forgotten already?\n')
+        narrate('Not quite. Have you forgotten already?\n', 0.05)
         brick_answer = input('> ')
     
     os.system('clear')
@@ -92,6 +96,6 @@ Tap the brick with your Wand.\n
         "Let us step into the night and pursue that flighty temptress...
         adventure" - Albus Dumbledore
     '''
-    narrate(welcome_statement_2)
+    narrate(welcome_statement_2, 0.05)
     time.sleep(2)
     player.player_stats()

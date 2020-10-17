@@ -5,13 +5,13 @@ import cmd # help use command line
 import textwrap # wrap text around the console for overflow
 import sys
 import os
-import time
 import random # generate pseudo-random numbers
 import math
 from collections import OrderedDict
 from functools import partial
 from title_screens import title_screen, help_menu, about_menu, title_screen_selections
 from game_setup import setup_game
+from game_visuals import narrate
 from player import Player
 import world
 
@@ -53,7 +53,7 @@ def play():
 
     title_screen()
 
-    setup_game()
+    setup_game(player)
 
     while player.victory == False:
         room = tile_at(world_map, player.x, player.y)
@@ -130,11 +130,7 @@ def player_examine():
     else:
         print("trigger puzzle here")
 
-def narrate(phrase):
-    for character in phrase:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+
 
 
 
