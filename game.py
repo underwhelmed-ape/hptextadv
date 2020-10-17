@@ -10,8 +10,8 @@ import random # generate pseudo-random numbers
 import math
 from collections import OrderedDict
 from functools import partial
-
-
+from title_screens import title_screen, help_menu, about_menu, title_screen_selections
+from game_setup import setup_game
 from player import Player
 import world
 
@@ -62,83 +62,6 @@ def play():
         choose_action(room, player)
         #prompt()
 
-
-
-###### Title Screen ######
-# will allow player to select menu options
-
-def title_screen():
-    os.system('clear')
-    print('##############################################')
-    print('######## Harry Potter Text Adventure #########')
-    print('##############################################')
-    print('')
-    print('                  -  PLAY  -                  ')
-    print('                  -  HELP  -                  ')
-    print('                  -  ABOUT -                  ')
-    print('                  -  QUIT  -                  ')
-    print('')
-    print('        -Created by Underwhelmed Ape-        ')
-    title_screen_selections()
-
-def help_menu():
-    os.system('clear')
-    print('##############################################')
-    print('################# Help Menu ##################')
-    print('##############################################')
-    print('')
-    print('- Type "up", "down", "left", "right" when moving')
-    print('- Use "look" to inspect something')
-    print('- Use "talk" to interact with people')
-    print('- Type "i" to view inventory')
-    print('')
-    print('                  -  PLAY  -                  ')
-    print('                  -  ABOUT -                  ')
-    print('                  -  QUIT  -                  ')
-    print('- Good luck in the adventure...')
-    title_screen_selections()
-
-def about_menu():
-    os.system('clear')
-    print('##############################################')
-    print('################# About Menu #################')
-    print('##############################################')
-    print('This is a text adventure game based in the')
-    print('Harry Potter universe')
-    print('')
-    print('A young worker in the Ministry of Magic finds')
-    print('themselves at the heart of an investigation')
-    print('')
-    print('Explore the Magical world and solve the mystery')
-    print('')
-    print('')
-    print('                  -  PLAY  -                  ')
-    print('                  -  HELP  -                  ')
-    print('                  -  QUIT  -                  ')
-    print('- Good luck in the adventure...')
-    title_screen_selections()
-
-def title_screen_selections():
-    option = input("> ")
-    if option.lower() in ['play', 'p']:
-        return
-    elif option.lower() in ['help', 'h']:
-        help_menu()
-    elif option.lower() in ['about', 'a']:
-        about_menu()
-    elif option.lower() in ['quit', 'q']:
-        sys.exit()
-    while option.lower() not in ['play', 'help', 'about', 'quit', 'p', 'h', 'a', 'q']:
-        print("Please enter a valid command.")
-        option = input("> ")
-        if option.lower() in ['play', 'p']:
-            return
-        elif option.lower() in ['help', 'h']:
-            help_menu()
-        elif option.lower() in ['about', 'a']:
-            about_menu()
-        elif option.lower() in ['quit', 'q']:
-            sys.exit()
 
 
 ###### GAME INTERACTIVITY ######
@@ -213,107 +136,7 @@ def narrate(phrase):
         sys.stdout.flush()
         time.sleep(0.05)
 
-def setup_game():
-    os.system('clear')
 
-    ### get player's name
-    question_name = "Hello, what's your name? \n"
-    narrate(question_name)
-    player_name = input("> ").strip()
-    player.name = player_name
-    os.system('clear')
-
-    ### get player's house
-    question_house = "Select your House \nAre you a (G)ryffindor, (S)lytherin, (H)ufflepuff or (R)avenclaw? \n"
-    narrate(question_house)
-
-    
-    player_house = input("> ").strip()
-    os.system('clear')
-    valid_houses = ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw', 'g', 's', 'h', 'r']
-    if player_house.lower() in valid_houses:
-
-        if player_house.lower() in ['g', 'gryffindor']:
-            player.house = 'Gryffindor'
-        if player_house.lower() in ['s', 'slytherin']:
-            player.house = 'Slytherin'    
-        if player_house.lower() in ['h', 'hufflepuff']:
-            player.house = 'Hufflepuff'    
-        if player_house.lower() in ['r', 'ravenclaw']:
-            player.house = 'Ravenclaw'
-    else:
-        while player_house.lower() not in valid_houses:
-            print("Please select a valid House for this adventure!")
-            player_house = input("> ").strip()
-        if player_house.lower() in valid_houses:
-            if player_house.lower() in ['g', 'gryffindor']:
-                player.house = 'Gryffindor'
-            if player_house.lower() in ['s', 'slytherin']:
-                player.house = 'Slytherin'    
-            if player_house.lower() in ['h', 'hufflepuff']:
-                player.house = 'Hufflepuff'    
-            if player_house.lower() in ['r', 'ravenclaw']:
-                player.house = 'Ravenclaw'
-            
-
-    ###### Player stats #######
-    #can merge with above
-
-    if player.house == 'Gryffindor':
-        player.hp = 100 # hitpoints - int
-        player.mp = 100 # magic strength - int
-        player.mp = 100 # magic strength - int
-        player.house_description = 'Nerve and Bravery'
-    elif player.house == 'Slytherin':
-        player.hp = 100
-        player.mp = 120
-        player.house_description = 'Cunning and Ambition'
-    elif player.house == 'Hufflepuff':
-        player.hp = 120
-        player.mp = 60
-        player.house_description = 'Hard Work and loyalty'
-    elif player.house == 'Ravenclaw':
-        player.hp = 100
-        player.mp = 60
-        player.house_description = 'Wisdom and Wit'
-
-    ### Introduction
-
-
-    time.sleep(0.5)
-    print("####################################")
-    print("#       Let's begin the game       #")
-    print("####################################")
-    
-
-    welcome_statement_1 = '''The path in front of you has been blocked. 
-You peer at the brick wall, it is aging and lightly discoloured, but is otherwise unremarkable from
-the surrounding London townhouses.
-But you have passed through many times and know the secrets beyond.
-
-Tap the brick with your Wand.\n
-'''
-    
-    narrate(welcome_statement_1)
-    brick_options = ['(1) Three up and two across', '(2) One up and four across']
-    for option in brick_options:
-        print(option)
-    brick_answer = input('> ')
-    while brick_answer != '1':
-        narrate('Not quite. Have you forgotten already?\n')
-        brick_answer = input('> ')
-    
-    os.system('clear')
-    time.sleep(1)
-    welcome_statement_2 = f'''Welcome {player.name} to the Wizarding World.
-
-        "Let us step into the night and pursue that flighty temptress...
-        adventure" - Albus Dumbledore
-    
-    '''
-    narrate(welcome_statement_2)
-    
-    player.player_stats()
 
 def action_adder(action_dict, hotkey, action, name):
     action_dict[hotkey.lower()] = action
