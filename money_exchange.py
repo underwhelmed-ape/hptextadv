@@ -3,7 +3,6 @@ import math
 # 29 knuts in sickle
 # 17 sickles in galleon
 # 493 knuts in galleon
-# requires import math
 
 def wizard_money(knuts):
     if knuts == 0:
@@ -20,7 +19,7 @@ def wizard_money(knuts):
         remaining_knuts = knuts % 493
         sickles = math.floor(remaining_knuts / 29)
         remaining = remaining_knuts % 29
-        return f'  * Galleons: {galleons} \n  * Sickles: {sickles} \n  * Knuts: {remaining}'
+        return f'    Galleons: {galleons} \n    Sickles: {sickles} \n    Knuts: {remaining}'
 
 
 

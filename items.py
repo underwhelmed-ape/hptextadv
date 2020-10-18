@@ -35,7 +35,7 @@ class Pocket_Knife(Item):
 class Sneakoscope(Item):
     def __init__(self):
         self.name = "A basic Sneakoscope"
-        self.description = "Useful for detecting untrustworthy people around you"
+        self.description = "Useful for detecting untrustworthy people around you and hidden magic"
         self.value = 800
         self.enabled = False
 

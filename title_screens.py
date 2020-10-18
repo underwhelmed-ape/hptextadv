@@ -1,5 +1,4 @@
 ###### Title Screen ######
-# Allow player to select menu options
 
 import os
 import sys
