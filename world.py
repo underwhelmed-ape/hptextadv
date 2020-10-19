@@ -22,6 +22,16 @@ class MapTile:
          return self.name
 
 
+class BlockedTile:
+    '''Tile for edges of the map, they turn the player back around'''
+    def __init__(self, x, y, name, description):
+        self.x = x
+        self.y = y
+        self.name = name
+        self.description = ''
+    def __str__(self):
+        return f'''{self.name} \n{self.description}'''
+
 
 
 class StartTile(MapTile):

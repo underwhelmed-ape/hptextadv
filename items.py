@@ -4,7 +4,8 @@ from money_exchange import wizard_money
 
 
 class Item:
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         raise NotImplementedError('Do not create raw Item objects')
 
     def __str__(self):

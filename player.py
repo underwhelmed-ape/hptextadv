@@ -28,7 +28,6 @@ class Player:
         return self.hp > 0 # if >0, will return True, else False
     
     def player_stats(self):
-        chars = 50
         print('\nPLAYER STATS')
         print('')
         print(f'NAME: {self.name}')
@@ -36,13 +35,10 @@ class Player:
         print(f'HEALTH POINTS: {self.hp}')
         print(f'MAGICAL STRENGTH: {self.mp}\n')
     
-
-
     def print_inventory(self):
         print("Inventory: ")
         for item in self.inventory:
             print(f'* {item}')
-
     
     def exchange_money(self, knuts):
         '''add or subtract money when receiving or spending money'''

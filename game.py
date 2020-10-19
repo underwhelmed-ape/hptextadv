@@ -28,6 +28,11 @@ player = Player()
 # Stat|Home|Perk|KTA |Vict|
 # xxxx|Wall|xxxx|xxxx|xxxx|
 
+# xxxx|xxxx|xxxx|.pot|shop|
+#     |fire|xxxx|DA-1|DA-2|
+# Stat|Home|Perk|KTA |Vict|
+# xxxx|Wall|xxxx|xxxx|xxxx|
+
 #  00 | 10 | 20 | 30 |
 #  01 | 11 | 21 | 31 |
 #  02 | 12 | 22 | 32 | 42 |
@@ -56,11 +61,16 @@ def play():
     setup_game(player)
 
     while player.victory == False:
-        room = tile_at(world_map, player.x, player.y)
-        #if isinstance(room, MinistryWall):
-        print(room)
-        choose_action(room, player)
-        #prompt()
+        if player.is_alive:
+            room = tile_at(world_map, player.x, player.y)
+            #if isinstance(room, MinistryWall):
+            print(room)
+            choose_action(room, player)
+            #prompt()
+        else:
+            os.system('clear')
+            print('You died, bad luck')
+            sys.exit()
 
 
 
@@ -124,8 +134,8 @@ def player_move():
 
 
 
-def player_examine():
-    if room[player.location][SOLVED] == True:
+def player_examine(room):
+    if room[player.location]['SOLVED'] == True:
         print("You have already completed this job")
     else:
         print("trigger puzzle here")
