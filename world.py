@@ -38,8 +38,20 @@ class StartTile(MapTile):
     def __init__(self, x, y, player):
         self.name = 'Ministry of Magic Entrance Hall'
         self.perkins = Perkins()
-        
-    
+        self.actions = [{
+            'visible_hotkey': '(T)alk',
+            'hotkeys': ['t', 'talk'],
+            'action': self.talk,
+            'name': 'Talk',
+            'args': player
+        },{
+            'visible_hotkey': '(L)ook',
+            'hotkeys': ['l', 'look', 'inspect'],
+            'action': self.inspect,
+            'name': 'Inspect the area around you',
+            'args': None
+        }]
+
     def intro_text(self):
         return '''
 You are in the Ministry of Magic.
@@ -53,14 +65,22 @@ We need your help catching this individual before they do any more harm.
 
 We've received an owl about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
 We need you to stop this and see what you can find in the area.'''
+    def inspect(self):
+        return '''You don't see much here, just Perkins stood next to you'''
 
 
 class Fireplace(MapTile):
     def __init__(self, x, y, player):
         if player.x == 1 and player.y == 2:
             self.name = 'Entrance Hall Fireplace'
-        if player.x == 2 and player.y == 1:
+        elif player.x == 2 and player.y == 1:
             self.name = 'Diagon Alley Fireplace'
+        self.actions = [{
+            'visible_hotkey': '(Look)',
+            'hotkeys': ['l', 'look', 'inspect'],
+            'action': self.transport,
+            'name': 'Inspect the area around you'
+        }]
 
     def intro_text(self):
         return '''Fireplace Transport. All users must provide their own Floo Powder.'''

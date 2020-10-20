@@ -10,9 +10,11 @@ from money_exchange import wizard_money
 
 class Player:
     def __init__(self):
-        self.inventory = [Wand(),
-                          Pocket_Knife(),
-                          Purse(493 * 2)]
+        self.inventory = [
+            Wand(),
+            Pocket_Knife(),
+            Purse(493 * 2)
+        ]
         self.name = ''
         self.house = ''
         self.house_description = ''
