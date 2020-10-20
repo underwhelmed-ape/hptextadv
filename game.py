@@ -23,26 +23,21 @@ player = Player()
 
 # CREATING THE WORLD MAP
 
-# xxxx|xxxx|.pot|shop|
-#     |fire|DA-1|DA-2|
-# Stat|Home|Perk|KTA |Vict|
-# xxxx|Wall|xxxx|xxxx|xxxx|
-
 # xxxx|xxxx|xxxx|.pot|shop|
 #     |fire|xxxx|DA-1|DA-2|
-# Stat|Home|Perk|KTA |Vict|
-# xxxx|Wall|xxxx|xxxx|xxxx|
+# Stat|Home|Perk|KTA |xxxx|
+# xxxx|Wall|xxxx|Vict|xxxx|
 
-#  00 | 10 | 20 | 30 |
-#  01 | 11 | 21 | 31 |
+#  00 | 10 | 20 | 30 | 40 |
+#  01 | 11 | 21 | 31 | 41 |
 #  02 | 12 | 22 | 32 | 42 |
 #  03 | 13 | 23 | 33 | 43 |
 
 world_map = [
-    [None, None, None, world.PopupPotions(2,0,player), None, None],
-    [None, world.Fireplace(1,1,player), None, world.DiagonAlleyTop(2,1,player), world.DiagonAlleyBottom(3,1, player), None],
-    [world.MinistryStatue(0,2,player), world.StartTile(1,2,player), world.MinistryPerkins(2,2,player), world.KnockturnAlley(3,2,player), world.SecretRoom(4,2,player)],
-    [None, world.MinistryWall(1,3,player), None, None, None]
+    [None, None, None, world.PopupPotions(3,0,player), None],
+    [None, world.Fireplace(1,1,player), None, world.DiagonAlleyTop(3,1,player), world.DiagonAlleyBottom(4,1, player)],
+    [world.MinistryStatue(0,2,player), world.StartTile(1,2,player), world.MinistryPerkins(2,2,player), world.KnockturnAlley(3,2,player), None],
+    [None, world.MinistryWall(1,3,player), None, world.SecretRoom(3,3,player), None]
 ]
 
 def tile_at(world_map, x, y):
@@ -161,8 +156,6 @@ def get_available_actions(room, player):
         )
 
 
-    # elif isinstance(room, world.Fireplace):
-    #     action_adder(actions, 'look', partial(room.transport, player), "Examine your location")
     # elif isinstance(room, world.DiagonAlleyTop):
     #     action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")    
     # elif isinstance(room, world.DiagonAlleyBottom):

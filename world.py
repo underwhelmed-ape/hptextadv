@@ -7,6 +7,7 @@ from spells import Anteoculatia, AvadaKedavra, Expelliarmus, Aguamenti
 
 class MapTile:
     def __init__(self, x, y, player):
+        self.name = ''
         self.x = x
         self.y = y
         self.player = player
@@ -79,7 +80,8 @@ class Fireplace(MapTile):
             'visible_hotkey': '(Look)',
             'hotkeys': ['l', 'look', 'inspect'],
             'action': self.transport,
-            'name': 'Inspect the area around you'
+            'name': 'Inspect the area around you',
+            'args': player
         }]
 
     def intro_text(self):
