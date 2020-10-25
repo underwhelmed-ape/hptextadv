@@ -48,6 +48,15 @@ Tap the correct brick with your wand to enter Diagon Alley.\n
         
     time.sleep(2)
 
+    os.system('clear')
+    narrate(f'''Hello {player.name}, I see this is your first day, here at the Ministry of Magic.\n''', 0.05)
+    time.sleep(0.5)
+    narrate('''We have assigned you to the Department of Magical Law Enforcement.\n''', 0.05)
+    narrate('''Specifically, the Misuse of Muggle Artifacts Office. I'll leave you with Perkins,\n''', 0.05)
+    narrate('''he will be able to tell you what you will be doing for your first job here.\n''', 0.05)
+    narrate('''If you need any help here, just ask him. Good luck on your first day!\n''', 0.05)
+
+    
 
 
 def set_player_house(player):
