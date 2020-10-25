@@ -2,7 +2,8 @@ from npc import Trader, Perkins
 from enemies import FinalBoss
 from money_exchange import wizard_money
 from spells import Anteoculatia, AvadaKedavra, Expelliarmus, Aguamenti
-
+from functools import partial
+from game_visuals import narrate
 
 
 class MapTile:
@@ -42,7 +43,7 @@ class StartTile(MapTile):
         self.actions = [{
             'visible_hotkey': '(T)alk',
             'hotkeys': ['t', 'talk'],
-            'action': self.talk,
+            'action': self.perkins.talk,
             'name': 'Talk',
             'args': player
         },{
@@ -58,16 +59,11 @@ class StartTile(MapTile):
 You are in the Ministry of Magic.
 It is a huge ornate corridor with a golden statue visible in the distance'''
 
-    def talk(self, player):
-        return f'''
-Perkins: 
-Hi {player.name}, we've been have a lot of trouble lately with a series of muggle baiting attacks. 
-We need your help catching this individual before they do any more harm. 
-
-We've received an owl about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
-We need you to stop this and see what you can find in the area.'''
+    
     def inspect(self):
-        return '''You don't see much here, just Perkins stood next to you'''
+        i = f'''
+{self.name.upper()}\n'''
+        return narrate(i, 0.05)
 
 
 class Fireplace(MapTile):
