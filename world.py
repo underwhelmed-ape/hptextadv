@@ -63,20 +63,30 @@ class StartTile(MapTile):
 
 class Fireplace(MapTile):
     def __init__(self, x, y, player):
+        self.name = 'Fireplace Transport'
         if player.x == 1 and player.y == 2:
             self.name = 'Entrance Hall Fireplace'
         elif player.x == 2 and player.y == 1:
             self.name = 'Diagon Alley Fireplace'
         self.actions = [{
-            'visible_hotkey': '(Look)',
+            'visible_hotkey': '(L)ook',
             'hotkeys': ['l', 'look', 'inspect'],
-            'action': self.transport,
+            'action': self.inspect,
             'name': 'Inspect the area around you',
+            'args': None
+        },{
+            'visible_hotkey': '(T)ravel',
+            'hotkeys': ['t', 'travel'],
+            'action': self.transport,
+            'name': 'Floo network access',
             'args': player
         }]
 
-    def intro_text(self):
-        return '''Fireplace Transport. All users must provide their own Floo Powder.'''
+    def inspect(self):
+        i = f'''
+A sign in front of you reads\n\n
+{self.name.upper()} \nAll users must provide their own Floo Powder.\n'''
+        return narrate(i, 0.05)
         
 
     def transport(self, player):
@@ -95,7 +105,7 @@ class Fireplace(MapTile):
                 print('Just say yes[y] or no[n]!!')
         
         elif self.name == 'Entrance Hall Fireplace':
-            print('This fireplace will take you back to the Ministry of Magic. \nWould you like to go? [y/n]')
+            print('This fireplace will take you to the Ministry of Magic. \nWould you like to go? [y/n]')
             user_decision = input('> ')
             try:
                 if user_decision.lower() in ['no', 'n']:
