@@ -26,7 +26,7 @@ class MapTile:
 
 class BlockedTile:
     '''Tile for edges of the map, they turn the player back around'''
-    def __init__(self, x, y, name, description):
+    def __init__(self, x, y, name):
         self.x = x
         self.y = y
         self.name = name
@@ -41,28 +41,23 @@ class StartTile(MapTile):
         self.name = 'Ministry of Magic Entrance Hall'
         self.perkins = Perkins()
         self.actions = [{
-            'visible_hotkey': '(T)alk',
-            'hotkeys': ['t', 'talk'],
-            'action': self.perkins.talk,
-            'name': 'Talk',
-            'args': player
-        },{
             'visible_hotkey': '(L)ook',
             'hotkeys': ['l', 'look', 'inspect'],
             'action': self.inspect,
             'name': 'Inspect the area around you',
             'args': None
+        },{
+            'visible_hotkey': '(T)alk',
+            'hotkeys': ['t', 'talk'],
+            'action': self.perkins.talk,
+            'name': 'Talk',
+            'args': player
         }]
-
-    def intro_text(self):
-        return '''
-You are in the Ministry of Magic.
-It is a huge ornate corridor with a golden statue visible in the distance'''
 
     
     def inspect(self):
         i = f'''
-{self.name.upper()}\n'''
+{self.name.upper()} \nYou are in a huge ornate corridor with a golden statue shining in the distance'\n'''
         return narrate(i, 0.05)
 
 

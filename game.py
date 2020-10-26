@@ -173,7 +173,7 @@ def choose_action(room, player):
         action_input = input('\n> ')
         action = available_actions.get(action_input)
         if action:
-            print(action())
+            action()
         else:
             print('Unknown action, please enter another.\n')
 
