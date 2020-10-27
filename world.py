@@ -24,15 +24,7 @@ class MapTile:
          return self.name
 
 
-class BlockedTile:
-    '''Tile for edges of the map, they turn the player back around'''
-    def __init__(self, x, y, name):
-        self.x = x
-        self.y = y
-        self.name = name
-        self.description = ''
-    def __str__(self):
-        return f'''{self.name} \n{self.description}'''
+
 
 
 
@@ -199,37 +191,49 @@ class PopupPotions(MapTile):
                 print(f'{i}. {item.name}: \n{wizard_money(item.value)}')
 
 
-class ClosedMapTile:
-    def __init__(self, x, y, player):
+class BlockedTile:
+    '''Tile for edges of the map, they turn the player back around'''
+    def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.player = player
-    
-    def description(self):
-        return None
+        self.description = 'Placeholder for BlockedTile description'
 
     def __str__(self):
-         return self.description()
+        return self.description
 
 
-class MinistryWall(ClosedMapTile):
-    def description(self):
-        return '''
+class MinistryWall(BlockedTile):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.description = '''
 There is only a dour tiled wall in front of you, you cannot go any further'''
 
-class MinistryStatue(ClosedMapTile):
-    def description(self):
-        return '''
-You look down the corridor. 
+class MinistryStatue(BlockedTile):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.description = '''
+You look down the corridor.\n 
 In the distance you can see a golden statue. 
-You cannot complete your job there. 
+You cannot complete your job there.\n
 You turn back'''
 
-class MinistryPerkins(ClosedMapTile):
-    def description(self):
-        return '''
-You just see Perkins in front of you.
+class MinistryPerkins(BlockedTile):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.description = '''
+You just see Perkins in front of you.\n
 He is blocking the way forward'''
+
+
+class FireplaceWall(BlockedTile):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.description = '''
+You are inside a fireplace, where do you expect to go?'''
 
 
 if __name__ == "__main__":

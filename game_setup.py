@@ -24,8 +24,8 @@ def setup_game(player):
 
     time.sleep(0.5)    
 
-    welcome_statement_1 = '''The path in front of you has been blocked. 
-You peer at the brick wall, it is aging and lightly discoloured, but is otherwise 
+    welcome_statement_1 = '''The path in front of you is blocked. 
+You peer at the brick wall, it is aging and lightly discoloured, 
 unremarkable from the surrounding London townhouses.
 You have been through here many times though.
 
@@ -33,7 +33,7 @@ Tap the correct brick with your wand to enter Diagon Alley.\n
 '''
     
     narrate(welcome_statement_1, 0.05)
-    brick_options = ['(1) Three up and two across', '(2) One up and four across']
+    brick_options = ['(1) Three up and two across', '(2) One up and four across', '(3) Five up and two across']
     for option in brick_options:
         print(option)
     
@@ -53,8 +53,8 @@ Tap the correct brick with your wand to enter Diagon Alley.\n
     time.sleep(0.5)
     narrate('''We have assigned you to the Department of Magical Law Enforcement.\n''', 0.05)
     narrate('''Specifically, the Misuse of Muggle Artifacts Office. I'll leave you with Perkins,\n''', 0.05)
-    narrate('''he will be able to tell you what you will be doing for your first job here.\n''', 0.05)
-    narrate('''If you need any help here, just ask him. Good luck on your first day!\n''', 0.05)
+    narrate('''he will be able to tell you what you will be doing for your first job.\n''', 0.05)
+    narrate('''If you need any help, just ask him. Good luck!\n''', 0.05)
 
     
 

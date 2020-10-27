@@ -41,7 +41,8 @@ class Perkins(NonPlayableCharacter):
     Hi {player.name}, we've been have a lot of trouble lately with a series of muggle baiting attacks. 
     We need your help catching this individual before they do any more harm. 
 
-    We've received an owl about a bewitched item for sale in Knockturn Alley, it's currently attacking anyone who approaches it. 
+    We've received an owl about a bewitched item for sale in Knockturn Alley, 
+    it's currently attacking anyone who approaches it. 
     We need you to stop this and see what you can find in the area.'''
                 self.times_spoken += 1
                 return narrate(speech, 0.05)

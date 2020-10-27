@@ -23,21 +23,28 @@ player = Player()
 
 # CREATING THE WORLD MAP
 
-# xxxx|xxxx|xxxx|.pot|shop|
-#     |fire|xxxx|DA-1|DA-2|
-# Stat|Home|Perk|KTA |xxxx|
-# xxxx|Wall|xxxx|Vict|xxxx|
 
-#  00 | 10 | 20 | 30 | 40 |
-#  01 | 11 | 21 | 31 | 41 |
-#  02 | 12 | 22 | 32 | 42 |
-#  03 | 13 | 23 | 33 | 43 |
+#     |FWal|    |FWal|.pot|shop|
+# FWal|fire|FWal|fire|DA-1|DA-2|Grin
+# Stat|Home|Perk|FWal|AWal|KTA |Hag 
+#     |Wall|    |    |    |Vict|
+
+#  00 | 10 | 20 | 30 | 40 | 50 |
+#  01 | 11 | 21 | 31 | 41 | 51 | 61
+#  02 | 12 | 22 | 32 | 42 | 52 | 62
+#  03 | 13 | 23 | 33 | 43 | 53 |
+
+# make shops with no move functionality. Player is transported back out after transaction
+# AWal is alley wall, will change output according to player's location
+# Hag is npc. Talking suggests that there is hidden magic to those who know how to find it
+
+home = world.StartTile(1,2,player)
 
 world_map = [
-    [None, None, None, world.PopupPotions(3,0,player), None],
-    [None, world.Fireplace(1,1,player), None, world.DiagonAlleyTop(3,1,player), world.DiagonAlleyBottom(4,1, player)],
-    [world.MinistryStatue(0,2,player), world.StartTile(1,2,player), world.MinistryPerkins(2,2,player), world.KnockturnAlley(3,2,player), None],
-    [None, world.MinistryWall(1,3,player), None, world.SecretRoom(3,3,player), None]
+    [None, world.FireplaceWall(1,0), None, world.FireplaceWall(3,0), world.PopupPotions(4,0,player), None],
+    [world.FireplaceWall(0,1), world.Fireplace(1,1,player), world.FireplaceWall(2,1), world.DiagonAlleyTop(3,1,player), world.DiagonAlleyBottom(4,1, player)],
+    [world.MinistryStatue(0,2), home, world.MinistryPerkins(2,2), world.KnockturnAlley(3,2,player), None],
+    [None, world.MinistryWall(1,3), None, world.SecretRoom(3,3,player), None]
 ]
 
 def tile_at(world_map, x, y):
@@ -62,7 +69,7 @@ def play():
             choose_action(room, player)
         else:
             os.system('clear')
-            print('You died, bad luck')
+            narrate('You died, bad luck', 0.1)
             sys.exit()
 
 
@@ -79,19 +86,19 @@ def player_move():
             print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_north()
-        elif isinstance(new_room, world.ClosedMapTile):
+        elif isinstance(new_room, world.BlockedTile):
             print('room is a ClosedMapTile')
             print(new_room)
             return
 
-    elif dest in ['down', 'south', 's', 'S']:
+    elif dest.lower() in ['d', 'down', 's', 'south']:
         new_room = tile_at(world_map, player.x, player.y + 1)
         if isinstance(new_room, world.MapTile):
             print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_south()
-        elif isinstance(new_room, world.ClosedMapTile):
-            print('room is a ClosedMapTile')
+        elif isinstance(new_room, world.BlockedTile):
+            print(f'new room is: {new_room}')
             print(new_room)
             return
 
@@ -101,7 +108,7 @@ def player_move():
             print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_west()
-        elif isinstance(new_room, world.ClosedMapTile):
+        elif isinstance(new_room, world.BlockedTile):
             print('room is a ClosedMapTile')
             print(new_room)
             return
@@ -112,7 +119,7 @@ def player_move():
             print('room is a MapTile')
             print(f'new room is: {new_room}')
             player.move_east()
-        elif isinstance(new_room, world.ClosedMapTile):
+        elif isinstance(new_room, world.BlockedTile):
             print('room is a ClosedMapTile')
             print(new_room)
             return
@@ -155,17 +162,12 @@ def get_available_actions(room, player):
         )
 
 
-    # elif isinstance(room, world.DiagonAlleyTop):
-    #     action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")    
-    # elif isinstance(room, world.DiagonAlleyBottom):
-    #     action_adder(actions, 'look', partial(room.transport, player), "Talk to person in tile")    
-
     return actions
 
 
 def choose_action(room, player):
     ''' Prompt player to give action command'''
-    print('\n' + '=============================================')
+    print('\n' + '===============================================================')
     print('What would like to do?')
     action = None
     while not action:
